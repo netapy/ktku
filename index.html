@@ -103,7 +103,9 @@
       domain = 'kataku.app',
       element = document.getElementById('leMail');
 
-    element.innerHTML = '- ' + user + '@' + domain + ' -';
+    element.innerHTML = '<a style="cursor:pointer; color:black; text-decoration:none" href="mailto:' + user + '@' +
+      domain + '">' + '- ' + user + '@' + domain + ' -' +
+      '</a>';
 
     particlesJS("particles-js", {
       "particles": {
