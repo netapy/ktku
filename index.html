@@ -1,307 +1,282 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="fr">
 
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- Basic Page Needs
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>- Kataku -</title>
+
+    <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>- Kataku -</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <link href="fonts/GapSans.ttf" rel="stylesheet" type="text/css">
+    <link href="fonts/GapSansBold.ttf" rel="stylesheet" type="text/css">
+    <link href="fonts/GapSansBlack.ttf" rel="stylesheet" type="text/css">
+    <style>
+        @font-face {
+            font-family: GapSans;
+            src: url('fonts/GapSans.ttf');
+        }
 
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+        @font-face {
+            font-family: GapSansBold;
+            src: url('fonts/GapSansBold.ttf');
+        }
 
-  <!-- FONT
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="fonts/GapSans.ttf" rel="stylesheet" type="text/css">
-  <link href="fonts/GapSansBold.ttf" rel="stylesheet" type="text/css">
-  <link href="fonts/GapSansBlack.ttf" rel="stylesheet" type="text/css">
-  <style>
-    @font-face {
-      font-family: GapSans;
-      src: url('fonts/GapSans.ttf');
-    }
-
-    @font-face {
-      font-family: GapSansBold;
-      src: url('fonts/GapSansBold.ttf');
-    }
-
-    @font-face {
-      font-family: GapSansBlack;
-      src: url('fonts/GapSansBlack.ttf');
-    }
-  </style>
-  <!-- CSS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  <style>
-    #particles-js {
-      position: absolute;
-      width: 100%;
-      height: 200vh;
-      background-color: #fbfbfb;
-      background-repeat: no-repeat;
-      background-size: 60%;
-      background-position: 0 50%;
-      animation-duration: 15s;
-      animation-name: ombre;
-      animation-iteration-count: infinite;
-      animation-timing-function: ease-out;
-    }
-
-    @keyframes blurr {
-      0% {
-        filter: blur(0px)
-      }
-
-      10% {
-        filter: blur(2px)
-      }
-
-      20% {
-        filter: blur(0px)
-      }
-
-      50% {
-        filter: blur(0px)
-      }
-
-      65% {
-        filter: blur(3px)
-      }
-
-      80% {
-        filter: blur(0px)
-      }
-
-      100% {
-        filter: blur(0px)
-      }
-    }
-
-    @keyframes ombre {
-      0% {
-        box-shadow: inset 0 0 40px rgb(215, 215, 215);
-      }
-
-      10% {
-        box-shadow: inset 0 0 300px rgb(196, 196, 196);
-      }
-
-      20% {
-        box-shadow: inset 0 0 40px rgb(215, 215, 215);
-      }
-
-      50% {
-        box-shadow: inset 0 0 40px rgb(215, 215, 215);
-      }
-
-      65% {
-        box-shadow: inset 0 0 200px rgb(100, 100, 100);
-      }
-
-      80% {
-        box-shadow: inset 0 0 40px rgb(215, 215, 215);
-      }
-
-      100% {
-        box-shadow: inset 0 0 40px rgb(215, 215, 215);
-      }
-    }
-  </style>
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="images/favicon.png">
+        @font-face {
+            font-family: GapSansBlack;
+            src: url('fonts/GapSansBlack.ttf');
+        }
+    </style>
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
 
-<body
-  style="animation-duration: 15s; animation-name: blurr; animation-iteration-count:infinite; animation-timing-function: ease-out;">
+<body class="text-center" style="animation-duration: 5s; animation-name: blurr; animation-timing-function: ease-out;">
+    <div id="particles-js"> </div>
+    <script src="css/particles.min.js"></script>
 
-  <!-- Primary Page Layout
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <!-- particles.js container -->
-  <div id="particles-js"> </div> <!-- particles.js lib - https://github.com/VincentGarreau/particles.js -->
-  <script src="css/particles.min.js"></script> <!-- stats.js lib -->
-
-  <div class="container">
-    <div style="height: 100vh; display: table; margin: auto;">
-      <div style='display: table-cell; vertical-align: middle;'>
-        <center>
-          <div style='margin-bottom: 80px;'>
-            <img src='images/logo_kataku_transpar.png' style='height:7rem; pointer-events: none;'>
-            <!--<h1 style='font-family: GapSansBlack;'>- Kataku -</h1>-->
-          </div>
-          <div class='row'>
-            <div class='six columns'>
-              <a
-                href='https://play.google.com/store/apps/details?id=com.ktk.kataku&hl=fr_FR&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
-                  alt='Disponible sur Google Play' src='images/fr_badge_web_generic.png' style='height: 68px;' /></a>
+    <div id="content-desktop" class="container">
+        <div class="row text-center align-items-center" style="padding: 15% 0px; ">
+            <div class="col">
+                <div class="col-12">
+                    <img src='images/logo_kataku_transpar.png'
+                        style='height:5rem; pointer-events: none; margin-bottom: 50px;'>
+                </div>
+                <div class="col-12">
+                    <a
+                        href='https://play.google.com/store/apps/details?id=com.ktk.kataku&hl=fr_FR&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
+                            alt='Disponible sur Google Play' src='images/fr_badge_web_generic.png'
+                            style='height: 60px;' /></a>
+                </div>
+                <div class="col-12">
+                    <a href='https://apps.apple.com/fr/app/kataku/id1501332724?l=fr'><img
+                            alt="Disponible sur l'App Store" src='images/appstore.png' style='height: 60px;' /></a>
+                </div>
             </div>
-            <div class='six columns'>
-              <a href='https://apps.apple.com/fr/app/kataku/id1501332724?l=fr'><img alt="Disponible sur l'App Store"
-                  src='images/appstore.png' style='height: 70px;' /></a>
+            <div class="col">
+                <img alt="iphonex" src='images/iphonescreen.png' style='height: 550px;' /></a>
             </div>
-          </div>
-        </center>
-      </div>
+        </div>
+        <div style="text-align: center; width: 100%;">
+            <h5 style='font-family: GapSansBold; opacity: 0.2;' id="leMail">- -</h5>
+        </div>
     </div>
-    <div style="height: 100vh; display: table; margin: auto;">
-      <div style='display: table-cell; vertical-align: middle;'>
-        <center>
-          <div style='margin-bottom: 80px;'>
-            <h3 style='font-family: GapSansBold;' id="leMail">- -</h3>
-          </div>
-        </center>
-      </div>
+
+    <div id="content-mobile" class="container">
+        <div class="row text-center align-items-center" style="padding: 15% 0px; ">
+            <div class="col-12">
+                <img src='images/logo_kataku_transpar.png' style='height: 5vh; pointer-events: none;'>
+            </div>
+            <div class="col-12">
+                <img alt="iphonex" src='images/iphonescreen.png' style='height: 60vh; padding: 3vh 0px;' /></a>
+            </div>
+
+            <div class="col-12">
+                <a
+                    href='https://play.google.com/store/apps/details?id=com.ktk.kataku&hl=fr_FR&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
+                        alt='Disponible sur Google Play' src='images/fr_badge_web_generic.png'
+                        style='height: 7vh;' /></a>
+            </div>
+            <div class="col-12">
+                <a href='https://apps.apple.com/fr/app/kataku/id1501332724?l=fr'><img alt="Disponible sur l'App Store"
+                        src='images/appstore.png' style='height: 7vh;' /></a>
+            </div>
+        </div>
+        <div style="text-align: center; width: 100%;">
+            <h5 style='font-family: GapSansBold; opacity: 0.2;' id="leMail2">- -</h5>
+        </div>
     </div>
-  </div>
 
-  <script>
-    var user = 'hello',
-      domain = 'kataku.app',
-      element = document.getElementById('leMail');
 
-    element.innerHTML = '<a style="cursor:pointer; color:black; text-decoration:none" href="mailto:' + user + '@' +
-      domain + '">' + '- ' + user + '@' + domain + ' -' +
-      '</a>';
+    <script>
+        var user = 'hello',
+            domain = 'kataku.app',
+            element = document.getElementById('leMail');
+        element2 = document.getElementById('leMail2');
 
-    particlesJS("particles-js", {
-      "particles": {
-        "number": {
-          "value": 15,
-          "density": {
-            "enable": false,
-            "value_area": 3527.50653390415
-          }
-        },
-        "color": {
-          "value": "#cfcfcf"
-        },
-        "shape": {
-          "type": "circle",
-          "stroke": {
-            "width": 0,
-            "color": "#000000"
-          },
-          "polygon": {
-            "nb_sides": 3
-          },
-          "image": {
-            "src": "",
-            "width": 100,
-            "height": 100
-          }
-        },
-        "opacity": {
-          "value": 0.7,
-          "random": false,
-          "anim": {
-            "enable": false,
-            "speed": 1,
-            "opacity_min": 0.1,
-            "sync": false
-          }
-        },
-        "size": {
-          "value": 4,
-          "random": true,
-          "anim": {
-            "enable": false,
-            "speed": 40,
-            "size_min": 0.1,
-            "sync": false
-          }
-        },
-        "line_linked": {
-          "enable": false,
-          "distance": 150,
-          "color": "#989898",
-          "opacity": 0.4,
-          "width": 1
-        },
-        "move": {
-          "enable": true,
-          "speed": 4.810236182596568,
-          "direction": "bottom",
-          "random": true,
-          "straight": true,
-          "out_mode": "out",
-          "bounce": false,
-          "attract": {
-            "enable": true,
-            "rotateX": 600,
-            "rotateY": 1200
-          }
+        element.innerHTML = '<a style="cursor:pointer; color:black; text-decoration:none" href="mailto:' + user +
+            '@' +
+            domain + '">' + '- ' + user + '@' + domain + ' -' +
+            '</a>';
+        element2.innerHTML = '<a style="cursor:pointer; color:black; text-decoration:none" href="mailto:' + user +
+            '@' +
+            domain + '">' + '- ' + user + '@' + domain + ' -' +
+            '</a>';
+
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 15,
+                    "density": {
+                        "enable": false,
+                        "value_area": 3527.50653390415
+                    }
+                },
+                "color": {
+                    "value": "#cfcfcf"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 3
+                    },
+                    "image": {
+                        "src": "",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.7,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 4,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": false,
+                    "distance": 150,
+                    "color": "#989898",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 4.810236182596568,
+                    "direction": "bottom",
+                    "random": true,
+                    "straight": true,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "window",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 200,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+
+    <style>
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100vh;
+            background-color: #fbfbfb;
+            background-repeat: no-repeat;
+            background-size: 60%;
+            background-position: 0 50%;
         }
-      },
-      "interactivity": {
-        "detect_on": "window",
-        "events": {
-          "onhover": {
-            "enable": false,
-            "mode": "grab"
-          },
-          "onclick": {
-            "enable": true,
-            "mode": "push"
-          },
-          "resize": true
-        },
-        "modes": {
-          "grab": {
-            "distance": 200,
-            "line_linked": {
-              "opacity": 1
+
+        @keyframes blurr {
+            0% {
+                filter: blur(0px)
             }
-          },
-          "bubble": {
-            "distance": 400,
-            "size": 40,
-            "duration": 2,
-            "opacity": 8,
-            "speed": 3
-          },
-          "repulse": {
-            "distance": 200,
-            "duration": 0.4
-          },
-          "push": {
-            "particles_nb": 4
-          },
-          "remove": {
-            "particles_nb": 2
-          }
-        }
-      },
-      "retina_detect": true
-    });
-    var count_particles, stats, update;
-    stats = new Stats;
-    stats.setMode(0);
-    stats.domElement.style.position = 'absolute';
-    stats.domElement.style.left = '0px';
-    stats.domElement.style.top = '0px';
-    document.body.appendChild(stats.domElement);
-    count_particles = document.querySelector('.js-count-particles');
-    update = function () {
-      stats.begin();
-      stats.end();
-      if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
-        count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
-      }
-      requestAnimationFrame(update);
-    };
-    requestAnimationFrame(update);;
-  </script>
 
-  <!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+            10% {
+                filter: blur(3px)
+            }
+
+            60% {
+                filter: blur(0px)
+            }
+        }
+
+        #content-desktop {
+            display: block;
+        }
+
+        #content-mobile {
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            #content-desktop {
+                display: none;
+            }
+
+            #content-mobile {
+                display: block;
+            }
+        }
+    </style>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
