@@ -32,6 +32,14 @@
             font-family: GapSansBlack;
             src: url('fonts/GapSansBlack.ttf');
         }
+
+        .grow {
+            transition: all .2s ease-in-out;
+        }
+
+        .grow:hover {
+            transform: scale(1.1);
+        }
     </style>
     <link rel="icon" type="image/png" href="images/favicon.png">
 
@@ -48,19 +56,20 @@
                     <img src='images/logo_kataku_transpar.png'
                         style='height:5rem; pointer-events: none; margin-bottom: 50px;'>
                 </div>
-                <div class="col-12">
+                <div class="col-12 grow">
                     <a
                         href='https://play.google.com/store/apps/details?id=com.ktk.kataku&hl=fr_FR&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
                             alt='Disponible sur Google Play' src='images/fr_badge_web_generic.png'
                             style='height: 60px;' /></a>
                 </div>
-                <div class="col-12">
+                <div class="col-12 grow">
                     <a href='https://apps.apple.com/fr/app/kataku/id1501332724?l=fr'><img
                             alt="Disponible sur l'App Store" src='images/appstore.png' style='height: 60px;' /></a>
                 </div>
             </div>
-            <div class="col">
-                <img alt="iphonex" src='images/demo.gif' style='height: 550px;' /></a>
+            <div class="col" style="filter:brightness(1.1);">
+                <img alt="iphonex" class="shadowed" src='images/demo.gif'
+                    style="height: 550px; -webkit-filter: drop-shadow(0px 0px 10px #222); filter: drop-shadow(0px 0px 10px #222);" /></a>
             </div>
         </div>
         <div style="text-align: center; width: 100%;">
@@ -73,8 +82,9 @@
             <div class="col-12">
                 <img src='images/logo_kataku_transpar.png' style='height: 5vh; pointer-events: none;'>
             </div>
-            <div class="col-12">
-                <img alt="iphonex" src='images/demo.gif' style='height: 60vh; padding: 3vh 0px;' /></a>
+            <div class="col-12" style="filter:brightness(1.1);">
+                <img alt="iphonex" src='images/demo.gif'
+                    style="height: 550px; -webkit-filter: drop-shadow(0px 0px 5px #5e5c5c); filter: drop-shadow(0px 0px 5px #5e5c5c);" /></a>
             </div>
 
             <div class="col-12">
@@ -112,7 +122,7 @@
         particlesJS("particles-js", {
             "particles": {
                 "number": {
-                    "value": 15,
+                    "value": 18,
                     "density": {
                         "enable": false,
                         "value_area": 3527.50653390415
@@ -165,7 +175,7 @@
                 },
                 "move": {
                     "enable": true,
-                    "speed": 4.810236182596568,
+                    "speed": 10,
                     "direction": "bottom",
                     "random": true,
                     "straight": true,
