@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Kataku</title>
+  <meta name="description" content="Kataku">
+  <meta name="author" content="LFB">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Yeon+Sung&display=swap" rel="stylesheet">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script src="js/ktk.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+
+<body scroll="no" style="overflow: hidden">
+
+  <!-- Secondary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div class="user-interface"><a href='index.html'>&#9751;</a></div> <!-- ICI, RETOUR AU MENu !! (avec reset) -->
+  <div class="user-interface" style="right: 0;">&#9730;</div>
+
+
+  <div class="container" id="board">
+
+    <script>
+      //Variables provisoire du contenu des cartes.
+      var contenu = [
+        '<j1> donne autant de shots qu il peut enlever de vêtements.',
+        '<j1> distribue autant de gorgés que de personnes différentes qu il a soulevé.',
+        '<j1> -- <j2>',
+        '<j1> gifle <j2>',
+        '<j1> devient la victime : tous les joueurs doivent le mépriser.',
+        '<j1> mange une pomme avec <j2>',
+        '<j1> frappe <j2> qui frappe <j3>'
+      ];
+      var titles = [
+        'Test',
+        'Test3',
+        'Test2',
+        'Virus'
+      ]
+      var joueurs = [       //BULLSHIT, A REMPLACER PAR LA LISTE ISSUE DE LA FONCTION DANS INDEX HMTL
+        'Baudouin',
+        'Louis',
+        'Foulques',
+        'Damien',
+        'Arthur',
+        'Dimitri',
+        'Segolene',
+        'Martin'
+      ]
+
+      //La classe a ete importee du fichier ktk.js present dans le dossier JS a cote
+      let board = document.querySelector('#board')
+      let carousel = new Carousel(board)
+    </script>
+
+  </div>
+
+
+  <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>
