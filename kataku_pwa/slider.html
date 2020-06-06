@@ -14,6 +14,10 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Yeon+Sung&display=swap" rel="stylesheet">
+
   <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
@@ -30,23 +34,21 @@
 
 </head>
 
-<body scroll="no" style="overflow: hidden;">
+<body scroll="no" style="overflow: hidden">
 
   <!-- Primary Page Layout
   ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+
   <div class="mainContainer">
     <div class="menu">
-      <h5 style="margin-top:4vh; width: 100%;">On joue ?</h5>
+      <h5 style="margin-top:4vh; width: 100%;">On se met comment ?</h5>
       <div style="width: 100%; max-height: 30vh;">
-        <img class="brainlet" src="assets/selecjoueurs.png">
+        <img class="brainlet" src="assets/intensite/bouteille1.png" id='CetteSouffrance'>
       </div>
-      <div class="styleLstJoueurs row" tabindex="0">
-        <span>
-          <input type="text" maxlength="8" onkeypress="reduireTaille(this)" placeholder="Nom des joueurs..." style="background-color: transparent; border: none; outline: none; min-width: 20px; width: 80%; padding: 5px; border-radius: 5px;">
-        </span>
-      </div>
-      <div class='row' style='width: 100%; z-index: 10;'>
-        <button class="button-primary" onclick="GOslider()">- Suivant -</button>
+      <div style="width: 100%; font-size:1.5rem;" id='scoreChoisi'>Doux</div>
+      <input type="range" min="0" max="23" step="1" value="0" id='scoreSale'>
+    <div class='row' style='width: 100%; z-index: 10;'>
+        <button class="button-primary" onclick="GOjeu()">- Suivant -</button>
       </div>
       <div class="logoktk">
         <img class='logobot' src="assets/logo_kataku_transpar.png" />
@@ -55,41 +57,19 @@
   </div>
 
   <script>
-        function reduireTaille(elem) {
-          elem.placeholder = "..."
-          let compte = elem.value.replace(/\s+/g, '').length + 1;
-          if (compte == 1){elem.style.width = "80%"}
-          elem.style.width = (String(compte +1 ) * 10) + "px";
-          if(event.key === 'Enter') {
-              ajoutUnJoueur(elem);        
-          }
-        }
-        function ajoutUnJoueur(ee) {
-          if (ee.parentNode.childElementCount == 9){
-            alert('Max 8 joueurs')
-          } else {
-            let valueInput = ee.value;
-            let htmlTagJr = "<span onclick='this.parentNode.removeChild(this)' class='jrSelect'>"+ valueInput +"</span> "
-            ee.insertAdjacentHTML("beforebegin", htmlTagJr)
-            console.log(valueInput)
-            ee.style.width = "30px"
-            ee.value = ""
-          }
-        }
-        
-  </script>
-  <script>
-    let Lstjoueurs = []
-    function GOslider() {
-      Lstjoueurs = []
-      let spanJoueurs = document.getElementsByClassName('jrSelect')
-      for (var i = 0; i < spanJoueurs.length; i++) {
-        Lstjoueurs.push(spanJoueurs[i].outerText)
-      }
-      console.log(Lstjoueurs)
-      localStorage.setItem('lesJoueurs', Lstjoueurs)
-      window.location.href = 'slider.html';
+    var palliers = ['Hein?', 'Doux', 'Gentil', 'Amical', 'Okk', 'Pas mal', 'Ouvert', 'Curieux', 'Osé', 'Joueur', 'Entrepreuneur', 'Festif', 'Courageux', 'Ambitieux', 'Déconnecté', 'Stupide', 'Sans amour propre', 'Oubli', 'Décadence', 'Misère', 'SAMU', '911', '*purification*', 'Kataku.']
+    var slider = document.getElementById("scoreSale");
+    var output = document.getElementById("scoreChoisi");
+
+    slider.oninput = function () {
+      output.innerHTML = palliers[this.value];
+      document.getElementById("CetteSouffrance").src = "assets/intensite/bouteille" + (parseInt(this.value) + 1) + ".png"
     }
+
+    function GOjeu() {
+      window.location.href = 'jeu.html';
+    }
+
   </script>
 
   <!-- End Document

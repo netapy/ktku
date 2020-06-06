@@ -25,7 +25,7 @@ class Carousel {
 
             // set default top card position and scale
             this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
-            this.nextCard.style.transform = 'translateX(-50%) translateY(-43%) rotate(0deg) rotateY(0deg) scale(0.9)'
+            this.nextCard.style.transform = 'translateX(-50%) translateY(-44%) rotate(0deg) rotateY(0deg) scale(0.9)'
 
             // destroy previous Hammer instance, if present
             if (this.hammer) this.hammer.destroy()
@@ -108,7 +108,7 @@ class Carousel {
         this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1)'
 
         // scale next card
-        if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-43%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'
+        if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-44%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'
 
         if (e.isFinal) {
 
@@ -161,7 +161,7 @@ class Carousel {
             } else {
                 // reset cards position
                 this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
-                if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-43%) rotate(0deg) rotateY(0deg) scale(0.9)'
+                if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-44%) rotate(0deg) rotateY(0deg) scale(0.9)'
             }
         }
     }
@@ -183,7 +183,7 @@ class Carousel {
             jrs_filtres.splice(index_alea, 1)
         };
 
-        card.innerHTML = '<div class="cardcont"><h4 style="margin-top:15%">' + titles[carte_choisie] + '</h4>  <img class="brainlet" src="images/bouteilles_res24.png"> <div class="consigne">' + rand.replace('<j1>', jrs_locaux[0]).replace('<j2>', jrs_locaux[1]).replace('<j3>', jrs_locaux[2]) + '</div><div class="logoktk" style="top:97.5%;"><img class="logobot" src="images/logo_kataku_transpar.png"/></div></div>'
+        card.innerHTML = '<div class="cardcont"><h5 style="margin-top:15%">' + titles[carte_choisie] + '</h5> <img class="illustrCarte" src="assets/img_cartes/roots.png"> <div class="consigne">' + rand.replace('<j1>', jrs_locaux[0]).replace('<j2>', jrs_locaux[1]).replace('<j3>', jrs_locaux[2]) + '</div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'
 
         if (this.board.firstChild) {
             this.board.insertBefore(card, this.board.firstChild);
