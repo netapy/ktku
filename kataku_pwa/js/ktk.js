@@ -25,6 +25,7 @@ class Carousel {
 
             // set default top card position and scale
             this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
+            this.nextCard.style.transform = 'translateX(-50%) translateY(-43%) rotate(0deg) rotateY(0deg) scale(0.9)'
 
             // destroy previous Hammer instance, if present
             if (this.hammer) this.hammer.destroy()
@@ -101,13 +102,13 @@ class Carousel {
         let deg = this.isDraggingFrom * dirX * Math.abs(propX) * 45
 
         // calculate scale ratio, between 95 and 100 %
-        let scale = (95 + (5 * Math.abs(propX))) / 100
+        let scale = (90 + (5 * Math.abs(propX))) / 100
 
         // move top card
         this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg) rotateY(0deg) scale(1)'
 
         // scale next card
-        if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'
+        if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-43%) rotate(0deg) rotateY(0deg) scale(' + scale + ')'
 
         if (e.isFinal) {
 
@@ -143,10 +144,10 @@ class Carousel {
                 // throw card in the chosen direction
                 this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)'
                 if (window.screen.availWidth < 800) {
-                    var tempsAttente = 500
+                    var tempsAttente = 100
                 }
                 else {
-                    var tempsAttente = 200
+                    var tempsAttente = 100
                 }
                 // wait transition end
                 setTimeout(() => {
@@ -160,7 +161,7 @@ class Carousel {
             } else {
                 // reset cards position
                 this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
-                if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(0.95)'
+                if (this.nextCard) this.nextCard.style.transform = 'translateX(-50%) translateY(-43%) rotate(0deg) rotateY(0deg) scale(0.9)'
             }
         }
     }
