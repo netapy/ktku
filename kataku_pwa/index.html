@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Kataku</title>
+  <meta name="description" content="Kataku">
+  <meta name="author" content="LFB">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Yeon+Sung&display=swap" rel="stylesheet">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script src="js/ktk.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+
+<body scroll="no" style="overflow: hidden">
+
+  <!--SPLASH SCREEN-->
+  <div id='signup-response'>
+    <div style="position: relative; text-align: center; top:45%; ">
+      <img style='width:30%; max-width: 20vh;' src="images/logo_kataku_transpar.png" />
+    </div>
+  </div>
+
+  <!-- Primary Page Layout
+  ––––––––––––––––––––––––––––––––––––––––––––––––––-->
+  <div class="menu">
+    <h3 style="margin-top:5vh">Joueurs</h3>
+    <!-- img class="brainlet" src="images/brainlet.jpg"> -->
+    <center>
+      <div class='row' style='bottom:10vh;'>
+        <form method="POST">
+          <div id="dynamicInput"
+            style='max-height:40vh;  overflow-y:scroll; background-color: rgb(250, 250, 250); padding: 5px;'>
+            <!--Contient les noms des joueurs!!!-->
+          </div>
+          <input type="button" value="+1 Joueur" onClick="addInput('dynamicInput');">
+        </form>
+        <button class="button-primary" onclick="GOslider()">- Suivant -</button>
+        <!-- EEEEH LOUIS, LA FONCTION EST ICI  -->
+      </div>
+    </center>
+    <div class="logoktk" style='top:98%;'><img class='logobot' src="images/logo_kataku_transpar.png" /></div>
+  </div>
+
+  <script>
+    var counter = 0;
+    var limit = 8;
+    function addInput(divName) {
+      if (counter == limit) {
+        alert(counter + " joueurs max.");
+      }
+      else {
+        var newdiv = document.createElement('div');
+        newdiv.innerHTML = "<input class='u-full-width' type='email' placeholder=joueur" + (counter + 1) + " id=player" + (counter + 1) + " style='width:40%' maxlength='10'>";
+        document.getElementById(divName).appendChild(newdiv);
+        document.getElementById("player" + (counter + 1)).focus();
+        counter++;
+      }
+    }
+    addInput('dynamicInput');
+  </script>
+
+  <script>
+    var joueurs = []
+    function GOslider() {
+      joueurs = []
+      for (var i = 1; i < counter + 1; i++) {
+        joueurs.push(document.getElementById('player' + i).value)
+      }
+      joueurs = joueurs.filter(Boolean)
+    }
+  </script>
+
+  <!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+
+</html>

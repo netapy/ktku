@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Kataku</title>
+  <meta name="description" content="Kataku">
+  <meta name="author" content="LFB">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Yeon+Sung&display=swap" rel="stylesheet">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- JS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script src="js/ktk.js"></script>
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+</head>
+
+<body scroll="no" style="overflow: hidden;">
+<div style='background-color: white; height: 100vh;'>
+    <h1>Test</h1>
+</div>
+
+<script>
+//DEBUT DU SCRIPT                               ------------------------
+
+//fonction pour generer aleatoirement un chiffre entre deux bornes
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min +1)) + min;
+};
+//fonction pour bouger un element dans une array
+function array_move(arr, old_index, new_index) {
+    while (old_index < 0) {
+        old_index += arr.length;
+    }
+    while (new_index < 0) {
+        new_index += arr.length;
+    }
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+};
+
+var nb_cartes = 50
+var id_groupe = 1
+var intensite = 3
+
+var part_virus = 0.2
+var part_juge = 0.45
+var espace_virus_min = 3
+var espace_virus_max = 4
+var espace_virus_fin = 4
+
+function deck(nb_cartes, id_groupe, intensite) {
+    var deck = []
+    //INSERER LES CONNECTEURS A LA BDD SQL
+    //SELECT * FROM _phrases WHERE id_groupe = "+ ID DU GROUPE CLASSIQUE + " AND id_type NOT IN ('3','5')"
+    //ici j'ai mis results = au rsultat attendu du SELECT precedent
+    var results = [1,2,3,4,5,6,7]
+    var verif = {'virus':0, 'juge':0, 'event':0}
+    console.log('results -->> ', results)
+    while (results.length > 0) {
+        var index_alea = getRandomIntInclusive(0, results.length -1)
+        var pick = results[index_alea] //PROBLEME ICI ON A PAS TOUTE LA LIGNE
+        if (pick == 1 && verif['virus'] < Math.round(part_virus * nb_cartes)) {
+            verif['virus'] += 1
+            deck.push(pick) //a remplacer avec l'ID de la carte generee
+        } else if (pick == 2 && verif['juge'] < Math.round(part_juge * nb_cartes)) {
+            verif['juge'] += 1
+            deck.push(pick) //a remplacer avec l'ID de la carte generee
+        } else {
+            verif['event'] += 1
+            deck.push(pick)
+        }
+        results.splice(index_alea,1)
+    }
+    console.log('a trier --> ', deck)
+    var deck_fige = [...deck]
+
+    for (id_carte in deck_fige) {
+        //"SELECT * FROM _phrases WHERE id_phrase = "+ ID DE LA CARTE +""
+        if (deck_fige[id_carte] == 2) {
+            //genere nouvelle position des cartes virus 
+            array_move(deck, deck.indexOf(deck_fige[id_carte]),getRandomIntInclusive(0,deck.length - espace_virus_fin))
+            //"SELECT * FROM cartes_assoc WHERE id_phrase = " + ID DE LA CARTE + ""
+            deck.splice(deck.indexOf(deck_fige[id_carte])+getRandomIntInclusive(espace_virus_min,espace_virus_max), 0, 99) //99 ce sera le virus_off
+        }
+    }
+    for (id_carte in deck) {
+        //"SELECT * FROM _phrases WHERE id_phrase = "+ ID DE LA CARTE +""
+        console.log(deck)
+        if (deck[id_carte] == 3) {
+            //"SELECT * FROM cartes_assoc WHERE id_phrase = " + ID DE LA CARTE + ""
+            deck.splice(deck.indexOf(deck[id_carte])+1, 0,88)
+        }
+    }
+    console.log(deck)
+
+var iii = [];
+iii.push('okk')
+iii[0].push('tiaa')
+console.log('---->>>> ' + iii);
+
+}
+
+deck(50,1,3)
+//FIN DU SCRIPT                                 ------------------------
+</script>
+
+</body>
+
+</html>
