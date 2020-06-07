@@ -74,7 +74,31 @@ const staticAssets = [
     'assets/img_cartes/bottle_medit.png',
     'assets/img_cartes/passe.png',
     'assets/img_cartes/present.png',
-    'assets/img_cartes/futur.png'
+    'assets/img_cartes/futur.png',
+    'assets/intensite/bouteille1.png',
+    'assets/intensite/bouteille2.png',
+    'assets/intensite/bouteille3.png',
+    'assets/intensite/bouteille4.png',
+    'assets/intensite/bouteille5.png',
+    'assets/intensite/bouteille6.png',
+    'assets/intensite/bouteille7.png',
+    'assets/intensite/bouteille8.png',
+    'assets/intensite/bouteille9.png',
+    'assets/intensite/bouteille10.png',
+    'assets/intensite/bouteille11.png',
+    'assets/intensite/bouteille12.png',
+    'assets/intensite/bouteille13.png',
+    'assets/intensite/bouteille14.png',
+    'assets/intensite/bouteille15.png',
+    'assets/intensite/bouteille16.png',
+    'assets/intensite/bouteille17.png',
+    'assets/intensite/bouteille18.png',
+    'assets/intensite/bouteille19.png',
+    'assets/intensite/bouteille20.png',
+    'assets/intensite/bouteille21.png',
+    'assets/intensite/bouteille22.png',
+    'assets/intensite/bouteille23.png',
+    'assets/intensite/bouteille24.png'
 ]
 
 
