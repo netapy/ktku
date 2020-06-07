@@ -26,6 +26,7 @@
   <!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.6.1/alasql.min.js"></script>
   <script src="js/ktk.js"></script>
 
   <!-- Favicon
@@ -47,29 +48,68 @@
       </div>
       <div style="width: 100%; font-size:1.5rem;" id='scoreChoisi'>Doux</div>
       <input type="range" min="0" max="23" step="1" value="0" id='scoreSale'>
-    <div class='row' style='width: 100%; z-index: 10;'>
+      <div class='row' style='width: 100%; z-index: 10;'>
         <button class="button-primary" onclick="GOjeu()">- Suivant -</button>
       </div>
       <div class="logoktk">
         <img class='logobot' src="assets/logo_kataku_transpar.png" />
-      </div>  
+      </div>
     </div>
   </div>
 
   <script>
-    var palliers = ['Hein?', 'Doux', 'Gentil', 'Amical', 'Okk', 'Pas mal', 'Ouvert', 'Curieux', 'Osé', 'Joueur', 'Entrepreuneur', 'Festif', 'Courageux', 'Ambitieux', 'Déconnecté', 'Stupide', 'Sans amour propre', 'Oubli', 'Décadence', 'Misère', 'SAMU', '911', '*purification*', 'Kataku.']
+    var palliers = ['Hein?', 'Doux', 'Gentil', 'Amical', 'Okk', 'Pas mal', 'Ouvert', 'Curieux', 'Osé', 'Joueur',
+      'Entrepreuneur', 'Festif', 'Courageux', 'Ambitieux', 'Déconnecté', 'Stupide', 'Sans amour propre', 'Oubli',
+      'Décadence', 'Misère', 'SAMU', '911', '*purification*', 'Kataku.'
+    ]
     var slider = document.getElementById("scoreSale");
     var output = document.getElementById("scoreChoisi");
-
     slider.oninput = function () {
       output.innerHTML = palliers[this.value];
-      document.getElementById("CetteSouffrance").src = "assets/intensite/bouteille" + (parseInt(this.value) + 1) + ".png"
+      document.getElementById("CetteSouffrance").src = "assets/intensite/bouteille" + (parseInt(this.value) + 1) +
+        ".png"
     }
 
     function GOjeu() {
+
+      function buildDeck(intens, idgroupe) {
+        var intensi_loc = "";
+        if (intens / 2 == 0.5) {
+          intensi_loc = "(1,2,0)";
+        } else if (intens / 2 == 12) {
+          intensi_loc = "(11, 12,0)";
+        } else if (intens / 2 % 1 == 0) {
+          intensi_loc = "(" + String(intens / 2 - 1) + "," + String(intens / 2) + "," + String(intens / 2 + 1) + ",0)";
+        } else {
+          intensi_loc = "(" + String(intens / 2 - 0.5) + "," + String(intens / 2 + 0.5) + ",0)";
+        }
+        let dbBrut = JSON.parse(localStorage.getItem("contenu"))
+        let LSTvirus = alasql("SELECT * from ? WHERE groupe = ? AND type = 3 AND intens in " + intensi_loc, [dbBrut,idgroupe]);
+        let LSTvotes = alasql("SELECT * from ? WHERE groupe = ? AND type = 5 AND intens in " + intensi_loc, [dbBrut,idgroupe]);
+        let LSTactions = alasql("SELECT * from ? WHERE groupe = ? AND type = 1 AND intens in " + intensi_loc, [dbBrut,idgroupe]);
+        //console.log(LSTvirus[Math.floor(Math.random() * LSTvirus.length)])
+        //console.log(LSTvotes[Math.floor(Math.random() * LSTvotes.length)])
+        //console.log(LSTactions[Math.floor(Math.random() * LSTactions.length)])
+        for (i = LSTactions.length - 1; i >= 15; --i) {
+          LSTactions.splice(Math.floor(Math.random() * LSTactions.length), 1)
+        }
+        for (i = LSTvotes.length - 1; i >= 7; --i) {
+          LSTvotes.splice(Math.floor(Math.random() * LSTvotes.length), 1)
+        }
+        for (i = LSTvirus.length - 1; i >= 4; --i) {
+          LSTvirus.splice(Math.floor(Math.random() * LSTvirus.length), 1)
+        }
+        console.log(LSTvirus)
+        console.log(LSTvotes)
+        console.log(LSTactions)
+        localStorage.setItem("deckJeu", JSON.stringify(LSTactions))
+      }
+
+      buildDeck((parseInt(slider.value) + 1), 1)
+
+      localStorage.setItem('intens', parseInt(slider.value) + 1);
       window.location.href = 'jeu.html';
     }
-
   </script>
 
   <!-- End Document

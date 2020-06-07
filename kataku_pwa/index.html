@@ -22,8 +22,8 @@
   <!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.6.1/alasql.min.js"></script>
   <script src="js/ktk.js"></script>
-
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="assets/icon.png">
@@ -36,13 +36,14 @@
   ––––––––––––––––––––––––––––––––––––––––––––––––––-->
   <div class="mainContainer">
     <div class="menu">
-      <h5 style="margin-top:4vh; width: 100%;">On joue ?</h5>
+      <h5 id='titreMenu' style="margin-top:4vh; width: 100%;">On joue ?</h5>
       <div style="width: 100%; max-height: 30vh;">
         <img class="brainlet" src="assets/selecjoueurs.png">
       </div>
       <div class="styleLstJoueurs row" tabindex="0">
         <span>
-          <input type="text" maxlength="8" onkeypress="reduireTaille(this)" placeholder="Nom des joueurs..." style="background-color: transparent; border: none; outline: none; min-width: 20px; width: 80%; padding: 5px; border-radius: 5px;">
+          <input type="text" maxlength="8" onkeypress="reduireTaille(this)" placeholder="Nom des joueurs..."
+            style="background-color: transparent; border: none; outline: none; min-width: 20px; width: 80%; padding: 5px; border-radius: 5px;">
         </span>
       </div>
       <div class='row' style='width: 100%; z-index: 10;'>
@@ -50,36 +51,41 @@
       </div>
       <div class="logoktk">
         <img class='logobot' src="assets/logo_kataku_transpar.png" />
-      </div>  
+      </div>
     </div>
   </div>
 
   <script>
-        function reduireTaille(elem) {
-          elem.placeholder = "..."
-          let compte = elem.value.replace(/\s+/g, '').length + 1;
-          if (compte == 1){elem.style.width = "80%"}
-          elem.style.width = (String(compte +1 ) * 10) + "px";
-          if(event.key === 'Enter') {
-              ajoutUnJoueur(elem);        
-          }
-        }
-        function ajoutUnJoueur(ee) {
-          if (ee.parentNode.childElementCount == 9){
-            alert('Max 8 joueurs')
-          } else {
-            let valueInput = ee.value;
-            let htmlTagJr = "<span onclick='this.parentNode.removeChild(this)' class='jrSelect'>"+ valueInput +"</span> "
-            ee.insertAdjacentHTML("beforebegin", htmlTagJr)
-            console.log(valueInput)
-            ee.style.width = "30px"
-            ee.value = ""
-          }
-        }
-        
+    function reduireTaille(elem) {
+      elem.placeholder = "..."
+      let compte = elem.value.replace(/\s+/g, '').length + 1;
+      if (compte == 1) {
+        elem.style.width = "80%"
+      }
+      elem.style.width = (String(compte + 1) * 10) + "px";
+      if (event.key === 'Enter') {
+        ajoutUnJoueur(elem);
+      }
+    }
+
+    function ajoutUnJoueur(ee) {
+      if (ee.parentNode.childElementCount == 9) {
+        alert('Max 8 joueurs')
+      } else if(ee.value.replace(" ","") == "") {
+        null
+      } else {
+        let valueInput = ee.value;
+        let htmlTagJr = "<span onclick='this.parentNode.removeChild(this)' class='jrSelect'>" + valueInput + "</span> "
+        ee.insertAdjacentHTML("beforebegin", htmlTagJr)
+        console.log(valueInput)
+        ee.style.width = "30px"
+        ee.value = ""
+      }
+    }
   </script>
   <script>
     let Lstjoueurs = []
+
     function GOslider() {
       Lstjoueurs = []
       let spanJoueurs = document.getElementsByClassName('jrSelect')
@@ -92,6 +98,69 @@
     }
   </script>
 
+  <script>
+    const titre_alea = [
+      "On joue ?",
+      "On se la colle ?",
+      "On vient se la mettre ?",
+      "On vient se déboiter ?",
+      "On prend sa cuite ?",
+      "On prend une biture ?",
+      "On a soif ?",
+      "On s'arrache la face ?",
+      "On vient se démolir ?",
+      "On s'éclate la tronche ?",
+      "On se met une murge ?",
+      "On se pète la ruche ?",
+      "On se torpille le caisson ?",
+      "On se remplit le cornet ?",
+      "On se retourne la tête ?",
+      "On se prend une timbale ?"
+    ];
+    document.getElementById("titreMenu").innerHTML = titre_alea[Math.floor(Math.random() * titre_alea.length)]
+  </script>
+
+  <script>
+    function listeJoueurss2(message, action) {
+      let tablee = ['i', 'j', 'k', 'l', 'm', "1", 'n', 'o', ")", ".", ",", 'p', 'q', 'r', "<", 's', 't', 'u', 'v', 'w',
+        'd', 'e', 'x', 'y', "Q", "R", "S", "T", "U", 'z', "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
+        "M", "N", "O", "P", "V", 'a', 'b', 'c', 'f', 'g', 'h', "W", "X", "Y", "Z", ";"
+      ]
+      let text = message;
+      let encrypted = "";
+      for (var i = 0; i < text.length; i++) {
+        let positionUn = tablee.indexOf(text[i]);
+        let n = null;
+        if (positionUn != "-1") {
+          n = action == 'encrypt' ? positionUn + 4 : positionUn - 4;
+          if (n >= 58) {
+            n = n - 58;
+          } else if (n < 0) {
+            n = n + 58;
+          }
+          s = tablee[n];
+        } else {
+          s = text[i]
+        }
+        encrypted += s;
+      }
+      //ne pas oublier de escape les " quand on veut le passer en JSON
+      return encrypted;
+    }
+
+    fetch('https://kataku.app/dbjsn.txt')
+      .then(function (response) {
+        return response.text();
+      })
+      .then(function (data) {
+        var jsonrep = JSON.parse(listeJoueurss2(data, 'NJKFFFF'));
+        localStorage.setItem("contenu", JSON.stringify(jsonrep))
+        //console.log(alasql('SELECT * from ? WHERE titre="Action"', [jsonrep]))
+      })
+      .catch(function (err) {
+        console.log(err)
+      });
+  </script>
   <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
