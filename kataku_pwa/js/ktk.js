@@ -33,11 +33,18 @@ class Carousel {
             // listen for tap and pan gestures on top card
             this.hammer = new Hammer(this.topCard)
             this.hammer.add(new Hammer.Tap())
-            this.hammer.add(new Hammer.Pan({ position: Hammer.position_ALL, threshold: 0 }))
+            this.hammer.add(new Hammer.Pan({
+                position: Hammer.position_ALL,
+                threshold: 0
+            }))
 
             // pass events data to custom callbacks
-            this.hammer.on('tap', (e) => { this.onTap(e) })
-            this.hammer.on('pan', (e) => { this.onPan(e) })
+            this.hammer.on('tap', (e) => {
+                this.onTap(e)
+            })
+            this.hammer.on('pan', (e) => {
+                this.onPan(e)
+            })
         }
     }
 
@@ -131,13 +138,13 @@ class Carousel {
 
                 successful = true
                 // get left border position
-                posX = - (this.board.clientWidth + this.topCard.clientWidth)
+                posX = -(this.board.clientWidth + this.topCard.clientWidth)
 
             } else if (propY < -0.05 && e.direction == Hammer.DIRECTION_UP) {
 
                 successful = true
                 // get top border position
-                posY = - (this.board.clientHeight + this.topCard.clientHeight)
+                posY = -(this.board.clientHeight + this.topCard.clientHeight)
             }
 
             if (successful) {
@@ -145,8 +152,7 @@ class Carousel {
                 this.topCard.style.transform = 'translateX(' + posX + 'px) translateY(' + posY + 'px) rotate(' + deg + 'deg)'
                 if (window.screen.availWidth < 800) {
                     var tempsAttente = 100
-                }
-                else {
+                } else {
                     var tempsAttente = 100
                 }
                 // wait transition end
@@ -171,19 +177,18 @@ class Carousel {
         // C'EST ICI QUON CHANGE L'HTML DE LA CARTE.            ---   --  -    ---    - - -         --      ----             - ---         ----              --  -- --- - --  --
         card.classList.add('card')
 
-        var carte_choisie = Math.floor(Math.random() * contenu.length);
-        var rand = contenu[carte_choisie];
-        var joueurs_appeles = (rand.match(/<j/g) || []).length;
+        var joueurs_appeles = (deckImporte[compteurDeck].text.match(/<j/g) || []).length;
         var jrs_locaux = [];
-        var jrs_filtres = [...joueurs];     //copie pure de la liste, pas de reference
-
+        var jrs_filtres = [...joueurs]; //copie pure de la liste, pas de reference
         for (var i = 0; i < joueurs_appeles; i++) {
             var index_alea = Math.floor(Math.random() * jrs_filtres.length)
             jrs_locaux.push(jrs_filtres[index_alea])
             jrs_filtres.splice(index_alea, 1)
         };
 
-        card.innerHTML = '<div class="cardcont"><h5 style="margin-top:15%">' + titles[carte_choisie] + '</h5> <img class="illustrCarte" src="assets/img_cartes/roots.png"> <div class="consigne">' + rand.replace('<j1>', jrs_locaux[0]).replace('<j2>', jrs_locaux[1]).replace('<j3>', jrs_locaux[2]) + '</div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'
+        card.innerHTML = '<div class="cardcont"><h5 style="margin-top:15%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="'+ assocImages[deckImporte[compteurDeck].id_image] +'"> <div class="consigne">' + deckImporte[compteurDeck].text.replace('<j1>', jrs_locaux[0]).replace('<j2>', jrs_locaux[1]).replace('<j3>', jrs_locaux[2]) + '</div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'
+
+        compteurDeck++;
 
         if (this.board.firstChild) {
             this.board.insertBefore(card, this.board.firstChild);
