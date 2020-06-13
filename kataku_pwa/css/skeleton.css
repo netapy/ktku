@@ -659,6 +659,7 @@ there.
 
 .brainlet {
   height: 90%;
+  max-width: 100%;
   padding: 2% 10px;
   user-select: none;
   -moz-user-select: none;
