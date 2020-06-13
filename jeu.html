@@ -38,31 +38,15 @@
   <div class="user-interface">
     <span style="	filter: invert(100%); opacity:0.6; font-size: 30px;" onclick="alert('retour menu')">&#x25BE;</span>
   </div>
-
+  <span id="dumb"></span>
 
   <div class="container" id="board">
 
     <script>
       let intensFinal = localStorage.getItem('intens');
       let couleur_fond = "hsl(211, 25%, " + String(Math.max(100 - (intensFinal * 100) / 18, 20)) + "%)";
-      document.getElementById('board').style.backgroundColor = couleur_fond;
-
-      //Variables provisoire du contenu des cartes.
-      var contenu = [
-        '<j1> donne autant de shots qu il peut enlever de vêtements.',
-        '<j1> distribue autant de gorgés que de personnes différentes qu il a soulevé.',
-        '<j1> -- <j2>',
-        '<j1> gifle <j2>',
-        '<j1> devient la victime : tous les joueurs doivent le mépriser.',
-        '<j1> mange une pomme avec <j2>',
-        '<j1> frappe <j2> qui frappe <j3>'
-      ];
-      var titles = [
-        'Défi',
-        'Antidote',
-        'Electroshock',
-        'Virus'
-      ]
+      document.getElementById('board').style.backgroundColor = 'transparent';
+      document.body.style.backgroundColor = couleur_fond;
 
       var deckImporte = JSON.parse(localStorage.getItem('deckJeu'))
       var compteurDeck = 0
@@ -71,7 +55,7 @@
       //La classe a ete importee du fichier ktk.js present dans le dossier JS a cote
       let board = document.querySelector('#board');
       let carousel = new Carousel(board);
-      let varProvisoire;
+      let dumber = 0;
     </script>
 
 

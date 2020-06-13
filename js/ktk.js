@@ -18,7 +18,12 @@ class Carousel {
         this.topCard = this.cards[this.cards.length - 1]
 
         // get next card
-        this.nextCard = this.cards[this.cards.length - 2]
+        if (typeof deckImporte[compteurDeck] != 'undefined') {
+            this.nextCard = this.cards[this.cards.length - 2]
+        } else {
+            dumber++;
+            this.nextCard = document.getElementById('dumb')
+        }
 
         // if at least one card is present
         if (this.cards.length > 0) {
@@ -157,10 +162,15 @@ class Carousel {
                 }
                 // wait transition end
                 setTimeout(() => {
+                    if (dumber == 2) {
+                        window.location.href = 'index.html';
+                    }
                     // remove swiped card
                     this.board.removeChild(this.topCard)
                     // add new card
-                    this.push()
+                    if (typeof deckImporte[compteurDeck] != 'undefined') {
+                        this.push()
+                    }
                     // handle gestures on new top card
                     this.handle()
                 }, tempsAttente)
@@ -186,7 +196,7 @@ class Carousel {
             jrs_filtres.splice(index_alea, 1)
         };
 
-        card.innerHTML = '<div class="cardcont"><h5 style="margin-top:15%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="'+ assocImages[deckImporte[compteurDeck].id_image] +'"> <div class="consigne">' + deckImporte[compteurDeck].text.replace('<j1>', jrs_locaux[0]).replace('<j2>', jrs_locaux[1]).replace('<j3>', jrs_locaux[2]) + '</div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'
+        card.innerHTML = '<div class="cardcont"><h5 style="margin-top:15%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '"> <div class="consigne">' + deckImporte[compteurDeck].text.replace('<j1>', jrs_locaux[0]).replace('<j2>', jrs_locaux[1]).replace('<j3>', jrs_locaux[2]) + '</div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'
 
         compteurDeck++;
 
