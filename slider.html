@@ -32,10 +32,9 @@
 
   <!-- Primary Page Layout
   ––––––––––––––––––––––––––––––––––––––––––––––––––-->
-
   <div class="mainContainer">
     <div class="menu">
-      <h5 style="margin-top:4vh; width: 100%;">On se met comment ?</h5>
+      <h5 id='titreMenu' style="margin-top:6%; width: 100%; white-space: nowrap;">On se met comment ?</h5>
       <div style="width: 100%; max-height: 30vh;">
         <img class="brainlet" src="assets/intensite/bouteille1.png" id='CetteSouffrance'>
       </div>
@@ -113,6 +112,10 @@
           dbBrut,
           idgroupe
         ]);
+        let LSTzeroes = alasql("SELECT * from ? WHERE groupe = ? AND intens = 0 ", [
+          dbBrut,
+          idgroupe
+        ]);
         for (i = LSTactions.length - 1; i >= 17; --i) {
           LSTactions.splice(Math.floor(Math.random() * LSTactions.length), 1)
         }
@@ -137,7 +140,6 @@
             break
           }
         }
-        console.log(deckFinal)
         for (carte in LSTvirus) {
           let posivir = getRandomInt(6, deckFinal.length)
           deckFinal.splice(posivir, 0, LSTvirus[carte])
@@ -149,14 +151,26 @@
             deckFinal.splice(i, 0, LSTequiv.filter(cartee => cartee.id == deckFinal[i].id_phrase)[0])
           }
         }
+        if (intens > 13) {
+          deckFinal.splice(Math.round(deckFinal.length * 0.25), 0, LSTzeroes.filter(cartee => cartee.id == 1)[0]);
+          deckFinal.splice(Math.round(deckFinal.length * 0.5), 0, LSTzeroes.filter(cartee => cartee.id == 1)[0]);
+          deckFinal.splice(Math.round(deckFinal.length * 0.75), 0, LSTzeroes.filter(cartee => cartee.id == 1)[0]);
+          deckFinal.unshift(LSTzeroes.filter(cartee => cartee.id == 3)[0]);
+          deckFinal.push(LSTzeroes.filter(cartee => cartee.id == 2)[0]);
+        }
+
         localStorage.setItem("deckJeu", JSON.stringify(deckFinal))
       }
 
       buildDeck((parseInt(slider.value) + 1), 1)
 
       localStorage.setItem('intens', parseInt(slider.value) + 1);
-      console.log(localStorage.getItem("deckJeu"))
-      window.location.href = 'jeu.html';
+      //console.log(localStorage.getItem("deckJeu"))
+
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        window.location.href = 'jeu.html';
+      }, 500);
     }
   </script>
 

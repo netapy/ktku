@@ -228,6 +228,19 @@ body {
   color: #222;
   height: 100%;
   background-color: #FBFBFB;
+  animation: transitionIN 0.5s;
+  transition: .5s ease-in;
+  transform-origin: center;
+}
+
+@keyframes transitionIN {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Typography
@@ -626,7 +639,7 @@ there.
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   background-color: #FBFBFB;
   transform: translateX(-50%) translateY(-50%) scale(0.95);
-  top:47vh;
+  top: 47vh;
 }
 
 .cardcont {
@@ -746,13 +759,13 @@ there.
   flex-flow: row wrap;
   -webkit-flex-flow: row wrap;
   justify-content: space-between;
-
-  margin: 0;
+  margin: 0px;
   position: absolute;
   top: 50%;
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
+  padding-bottom: 20px;
 }
 
 .styleLstJoueurs {
@@ -760,17 +773,44 @@ there.
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 10px 10%;
+  max-width: 100%;
+  min-height: 10%;
+  max-height: 30%;
+  height: auto;
+  padding: 10px 2%;
   margin: 10px 1px;
   background-color: #F2F2F2;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: bold;
   text-align: justify;
+  flex-flow: wrap;
+}
+
+.champJoueurAjout {
+  border: transparent;
+  border-bottom: 1px solid #dbdbdb;
+  background-color: #FBFBFB;
+  height: 33px;
+  width: 40%;
+  margin: 0px 5px;
+  font-size: 16px;
+}
+
+.btnPlus {
+  color: #FBFBFB;
+  width: 30px;
+  height: auto;
+  border-radius: 5px;
+  font-size: 18px;
+  padding: 8px;
+  cursor: pointer;
 }
 
 .jrSelect {
   opacity: 0.8;
   margin: 0px 5px;
+  display: block;
+  cursor: pointer;
 }
 
 .mainContainer {
@@ -831,4 +871,13 @@ input[type="range"]::-webkit-slider-thumb {
 
 input[type="range"]::-webkit-slider-thumb:active {
   transform: scale(1.6);
+}
+
+.transition-fade {
+  transition: 1s;
+  opacity: 1;
+}
+
+html.is-animating .transition-fade {
+  opacity: 0;
 }

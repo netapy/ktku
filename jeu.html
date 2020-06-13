@@ -47,6 +47,7 @@
       let couleur_fond = "hsl(211, 25%, " + String(Math.max(100 - (intensFinal * 100) / 18, 20)) + "%)";
       document.getElementById('board').style.backgroundColor = 'transparent';
       document.body.style.backgroundColor = couleur_fond;
+      document.body.style.transition = "2s ease"
 
       var deckImporte = JSON.parse(localStorage.getItem('deckJeu'))
       var compteurDeck = 0
@@ -57,7 +58,6 @@
       let carousel = new Carousel(board);
       let dumber = 0;
     </script>
-
 
   </div>
 

@@ -1,5 +1,4 @@
 class Carousel {
-
     constructor(element) {
         this.board = element
         // add first two cards programmatically
@@ -10,7 +9,6 @@ class Carousel {
     }
 
     handle() {
-
         // list all cards
         this.cards = this.board.querySelectorAll('.card')
 
@@ -42,10 +40,9 @@ class Carousel {
                 position: Hammer.position_ALL,
                 threshold: 0
             }))
-
             // pass events data to custom callbacks
             this.hammer.on('tap', (e) => {
-                this.onTap(e)
+                this.onTap(e);
             })
             this.hammer.on('pan', (e) => {
                 this.onPan(e)
@@ -65,18 +62,16 @@ class Carousel {
         this.topCard.style.transition = 'transform 100ms ease-out'
 
         // rotate
-        this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(' + rotateY + 'deg) scale(1)'
+        this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(10deg) rotateY(' + rotateY + 'deg) scale(1)'
 
         // wait transition end
         setTimeout(() => {
             // reset transform properties
             this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(0deg) rotateY(0deg) scale(1)'
         }, 100)
-
     }
 
     onPan(e) {
-
         if (!this.isPanning) {
 
             this.isPanning = true
@@ -163,13 +158,32 @@ class Carousel {
                 // wait transition end
                 setTimeout(() => {
                     if (dumber == 2) {
-                        window.location.href = 'index.html';
+                        document.body.style.opacity = 0;
+                        setTimeout(() => {
+                            window.location.href = 'index.html';
+                        }, 500);
                     }
                     // remove swiped card
                     this.board.removeChild(this.topCard)
                     // add new card
                     if (typeof deckImporte[compteurDeck] != 'undefined') {
                         this.push()
+                        if (this.nextCard.firstChild.firstChild.innerHTML == "Virus") {
+                            document.body.style.backgroundColor = '#A54040FF';
+                            setTimeout(function () {
+                                document.body.style.backgroundColor = couleur_fond;
+                            }, 1500)
+                        } else if (this.nextCard.firstChild.firstChild.innerHTML == "Antidote") {
+                            document.body.style.backgroundColor = '#448952FF';
+                            setTimeout(function () {
+                                document.body.style.backgroundColor = couleur_fond;
+                            }, 1500)
+                        } else if (this.nextCard.firstChild.firstChild.innerHTML == "Fosse") {
+                            document.body.style.backgroundColor = '#835833FF';
+                            setTimeout(function () {
+                                document.body.style.backgroundColor = couleur_fond;
+                            }, 1500)
+                        }
                     }
                     // handle gestures on new top card
                     this.handle()

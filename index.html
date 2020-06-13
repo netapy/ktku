@@ -36,18 +36,24 @@
   ––––––––––––––––––––––––––––––––––––––––––––––––––-->
   <div class="mainContainer">
     <div class="menu">
-      <h5 id='titreMenu' style="margin-top:4vh; width: 100%;">On joue ?</h5>
-      <div style="width: 100%; max-height: 30vh;">
+      <h5 id='titreMenu' style="margin-top:6%; width: 100%; white-space: nowrap;">On joue ?</h5>
+      <div style="width: 100%; height:33%;">
         <img class="brainlet" src="assets/selecjoueurs.png">
       </div>
-      <div class="styleLstJoueurs row" tabindex="0">
-        <span>
-          <input type="text" maxlength="8" onkeypress="reduireTaille(this)" placeholder="Nom des joueurs..."
-            style="background-color: transparent; border: none; outline: none; min-width: 20px; width: 80%; padding: 5px; border-radius: 5px;">
-        </span>
+      <div id="listeJoueurs" class="styleLstJoueurs row" tabindex="0">
+        <span id="dumbPrListe"></span>
       </div>
-      <div class='row' style='width: 100%; z-index: 10;'>
-        <button class="button-primary" onclick="GOslider()">- Suivant -</button>
+      <div style="width: 100%; position: relative; margin-bottom: 20px;">
+        <span class="btnPlus" style="background-color: #F1F1F1; color: #363636;">☰</span>
+        <input id="champJoueur" class="champJoueurAjout" placeholder="Joueur..." maxlength="8">
+        <span class="btnPlus" style="background-color: #363636; padding-left: 10px;padding-right: 10px;"
+          onclick="ajoutUnJoueur(document.getElementById('champJoueur'))">+</span>
+      </div>
+      <div style='width: 100%; z-index: 10; height: auto;'>
+        <button id="suivantPage1" class="button-primary" onclick="GOslider()" style="opacity: 0.6;" disabled>- Ajoute
+          3
+          joueurs
+          -</button>
       </div>
       <div class="logoktk">
         <img class='logobot' src="assets/logo_kataku_transpar.png" />
@@ -64,30 +70,38 @@
   </script>
 
   <script>
-    function reduireTaille(elem) {
-      elem.placeholder = "..."
-      let compte = elem.value.replace(/\s+/g, '').length + 1;
-      if (compte == 1) {
-        elem.style.width = "80%"
+    document.getElementById('champJoueur').addEventListener("keyup", function (event) {
+      if (event.key === "Enter") {
+        ajoutUnJoueur(this)
       }
-      elem.style.width = (String(compte + 1) * 10) + "px";
-      if (event.key === 'Enter') {
-        ajoutUnJoueur(elem);
+    });
+    let btnSuivantP1 = document.getElementById("suivantPage1")
+
+    function ajoutUnJoueur(ee) {
+      if (document.getElementsByClassName('jrSelect').length == 8) {
+        alert('Max 8 joueurs')
+      } else if (ee.value.replace(" ", "") == "") {
+        null;
+      } else {
+        let htmlTagJr = "<span onclick='this.parentNode.removeChild(this); adjustBtn()' class='jrSelect'>" + ee.value +
+          " </span> ";
+        document.getElementById('dumbPrListe').insertAdjacentHTML('beforebegin', htmlTagJr);
+        adjustBtn();
+        ee.value = "";
+        ee.focus();
       }
     }
 
-    function ajoutUnJoueur(ee) {
-      if (ee.parentNode.childElementCount == 9) {
-        alert('Max 8 joueurs')
-      } else if (ee.value.replace(" ", "") == "") {
-        null
+    function adjustBtn() {
+      if (document.getElementsByClassName('jrSelect').length >= 3) {
+        btnSuivantP1.disabled = false;
+        btnSuivantP1.style.opacity = 1;
+        btnSuivantP1.innerHTML = '- Suivant -';
       } else {
-        let valueInput = ee.value;
-        let htmlTagJr = "<span onclick='this.parentNode.removeChild(this)' class='jrSelect'>" + valueInput + "</span> "
-        ee.insertAdjacentHTML("beforebegin", htmlTagJr)
-        console.log(valueInput)
-        ee.style.width = "30px"
-        ee.value = ""
+        btnSuivantP1.innerHTML = "- Ajoute " + String(3 - document.getElementsByClassName('jrSelect').length) +
+          " joueurs -";
+        btnSuivantP1.disabled = true;
+        btnSuivantP1.style.opacity = 0.6;
       }
     }
   </script>
@@ -100,9 +114,11 @@
       for (var i = 0; i < spanJoueurs.length; i++) {
         Lstjoueurs.push(spanJoueurs[i].outerText)
       }
-      console.log(Lstjoueurs)
       localStorage.setItem('lesJoueurs', Lstjoueurs)
-      window.location.href = 'slider.html';
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        window.location.href = 'slider.html';
+      }, 500);
     }
   </script>
 
