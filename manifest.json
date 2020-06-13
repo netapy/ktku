@@ -1,0 +1,21 @@
+{
+    "name": "Kataku - Jeu à boire",
+    "short_name": "Kataku",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#FBFBFB",
+    "theme_color": "#363636",
+    "description": "Jeu à boire.",
+    "icons": [
+      {
+        "src": "assets/icon2.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      },
+      {
+        "src": "assets/icon3.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      }
+    ]
+  }
