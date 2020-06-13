@@ -1,194 +1,303 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 
 <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <!-- Basic Page Needs
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Kataku</title>
-  <meta name="description" content="Kataku">
-  <meta name="author" content="LFB">
-  <link rel="manifest" href="./manifest.json">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-  <!-- Mobile Specific Metas
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>- Kataku -</title>
 
-  <!-- CSS
+    <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
+    <link href="fonts/GapSans.ttf" rel="stylesheet" type="text/css">
+    <link href="fonts/GapSansBold.ttf" rel="stylesheet" type="text/css">
+    <link href="fonts/GapSansBlack.ttf" rel="stylesheet" type="text/css">
+    <style>
+        @font-face {
+            font-family: GapSans;
+            src: url('fonts/GapSans.ttf');
+        }
 
-  <!-- JS
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.6.1/alasql.min.js"></script>
-  <script src="js/ktk.js"></script>
-  <!-- Favicon
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="icon" type="image/png" href="assets/icon.png">
+        @font-face {
+            font-family: GapSansBold;
+            src: url('fonts/GapSansBold.ttf');
+        }
+
+        @font-face {
+            font-family: GapSansBlack;
+            src: url('fonts/GapSansBlack.ttf');
+        }
+
+        .grow {
+            transition: all .2s ease-in-out;
+        }
+
+        .grow:hover {
+            transform: scale(1.1);
+        }
+
+        .intouchable {
+            user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-drag: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+        }
+    </style>
+    <link rel="icon" type="image/png" href="images/favicon.png">
 
 </head>
 
-<body scroll="no" style="overflow: hidden;">
+<body class="text-center" style="animation: blurr 5s ease-out;">
+    <div id="particles-js"> </div>
+    <script src="css/particles.min.js"></script>
 
-  <!-- Primary Page Layout
-  ––––––––––––––––––––––––––––––––––––––––––––––––––-->
-  <div class="mainContainer">
-    <div class="menu">
-      <h5 id='titreMenu' style="margin-top:4vh; width: 100%;">On joue ?</h5>
-      <div style="width: 100%; max-height: 30vh;">
-        <img class="brainlet" src="assets/selecjoueurs.png">
-      </div>
-      <div class="styleLstJoueurs row" tabindex="0">
-        <span>
-          <input type="text" maxlength="8" onkeypress="reduireTaille(this)" placeholder="Nom des joueurs..."
-            style="background-color: transparent; border: none; outline: none; min-width: 20px; width: 80%; padding: 5px; border-radius: 5px;">
-        </span>
-      </div>
-      <div class='row' style='width: 100%; z-index: 10;'>
-        <button class="button-primary" onclick="GOslider()">- Suivant -</button>
-      </div>
-      <div class="logoktk">
-        <img class='logobot' src="assets/logo_kataku_transpar.png" />
-      </div>
+    <div id="content-desktop" class="container">
+        <div class="row text-center align-items-center" style="padding: 15% 0px; ">
+            <div class="col">
+                <div class="col-12">
+                    <img class="intouchable" src='images/logo_kataku_transpar.png'
+                        style='height:5rem; pointer-events: none; margin-bottom: 50px;'>
+                </div>
+                <div class="col-12 grow">
+                    <a
+                        href='https://play.google.com/store/apps/details?id=com.ktk.kataku&hl=fr_FR&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
+                            alt='Disponible sur Google Play' src='images/fr_badge_web_generic.png'
+                            style='height: 60px;' /></a>
+                </div>
+                <div class="col-12 grow">
+                    <a href='https://apps.apple.com/fr/app/kataku/id1501332724?l=fr'><img
+                            alt="Disponible sur l'App Store" src='images/appstore.png' style='height: 60px;' /></a>
+                </div>
+            </div>
+            <div class="col" style="filter:brightness(1.1);">
+                <img class="intouchable" alt="iphonex" class="shadowed" src='images/demo.gif'
+                    style="height: 550px; -webkit-filter: drop-shadow(0px 0px 10px #222); filter: drop-shadow(0px 0px 10px #222);" /></a>
+            </div>
+        </div>
+        <div style="text-align: center; width: 100%;">
+            <h5 style='font-family: GapSansBold; opacity: 0.2;' id="leMail">- -</h5>
+        </div>
     </div>
-  </div>
 
-  <script>
-    const state = {
-      'page_id': 1,
-      'user_id': 5
-    }
-    const title = ''
-    const url = localStorage.getItem('linkCode')
+    <div id="content-mobile" class="container">
+        <div class="row text-center align-items-center" style="padding: 15% 0px; ">
+            <div class="col-12">
+                <img class="intouchable" src='images/logo_kataku_transpar.png' style='height: 5vh; pointer-events: none;'>
+            </div>
+            <div class="col-12" style="filter:brightness(1.1);">
+                <img class="intouchable" alt="iphonex" src='images/demo.gif'
+                    style="height: 60vh; padding: 2vh 0px; -webkit-filter: drop-shadow(0px 0px 5px #5e5c5c); filter: drop-shadow(0px 0px 5px #5e5c5c);" /></a>
+            </div>
 
-    history.pushState(state, title, url)
-  </script>
+            <div class="col-12">
+                <a
+                    href='https://play.google.com/store/apps/details?id=com.ktk.kataku&hl=fr_FR&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img
+                        alt='Disponible sur Google Play' src='images/fr_badge_web_generic.png'
+                        style='height: 7vh;' /></a>
+            </div>
+            <div class="col-12">
+                <a href='https://apps.apple.com/fr/app/kataku/id1501332724?l=fr'><img alt="Disponible sur l'App Store"
+                        src='images/appstore.png' style='height: 7vh;' /></a>
+            </div>
+        </div>
+        <div style="text-align: center; width: 100%;">
+            <h5 style='font-family: GapSansBold; opacity: 0.2;' id="leMail2">- -</h5>
+        </div>
+    </div>
 
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', function () {
-        navigator.serviceWorker.register('sw.js');
-      });
-    }
-  </script>
 
-  <script>
-    function reduireTaille(elem) {
-      elem.placeholder = "..."
-      let compte = elem.value.replace(/\s+/g, '').length + 1;
-      if (compte == 1) {
-        elem.style.width = "80%"
-      }
-      elem.style.width = (String(compte + 1) * 10) + "px";
-      if (event.key === 'Enter') {
-        ajoutUnJoueur(elem);
-      }
-    }
+    <script>
+        var user = 'hello',
+            domain = 'kataku.app',
+            element = document.getElementById('leMail');
+        element2 = document.getElementById('leMail2');
 
-    function ajoutUnJoueur(ee) {
-      if (ee.parentNode.childElementCount == 9) {
-        alert('Max 8 joueurs')
-      } else if (ee.value.replace(" ", "") == "") {
-        null
-      } else {
-        let valueInput = ee.value;
-        let htmlTagJr = "<span onclick='this.parentNode.removeChild(this)' class='jrSelect'>" + valueInput + "</span> "
-        ee.insertAdjacentHTML("beforebegin", htmlTagJr)
-        console.log(valueInput)
-        ee.style.width = "30px"
-        ee.value = ""
-      }
-    }
-  </script>
-  <script>
-    let Lstjoueurs = []
+        element.innerHTML = '<a style="cursor:pointer; color:black; text-decoration:none" href="mailto:' + user +
+            '@' +
+            domain + '">' + '- ' + user + '@' + domain + ' -' +
+            '</a>';
+        element2.innerHTML = '<a style="cursor:pointer; color:black; text-decoration:none" href="mailto:' + user +
+            '@' +
+            domain + '">' + '- ' + user + '@' + domain + ' -' +
+            '</a>';
 
-    function GOslider() {
-      Lstjoueurs = []
-      let spanJoueurs = document.getElementsByClassName('jrSelect')
-      for (var i = 0; i < spanJoueurs.length; i++) {
-        Lstjoueurs.push(spanJoueurs[i].outerText)
-      }
-      console.log(Lstjoueurs)
-      localStorage.setItem('lesJoueurs', Lstjoueurs)
-      window.location.href = 'slider.html';
-    }
-  </script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 15,
+                    "density": {
+                        "enable": false,
+                        "value_area": 3527.50653390415
+                    }
+                },
+                "color": {
+                    "value": "#dddddd"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 3
+                    },
+                    "image": {
+                        "src": "",
+                        "width": 100,
+                        "height": 100
+                    }
+                },
+                "opacity": {
+                    "value": 0.7,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 4,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": false,
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 7,
+                    "direction": "bottom",
+                    "random": true,
+                    "straight": true,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": true,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "window",
+                "events": {
+                    "onhover": {
+                        "enable": false,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true,
+                    onresize: {
+                        enable: true,
+                        density_auto: true,
+                        density_area: 400 // nb_particles = particles.nb * (canvas width *  canvas height / 1000) / density_area
+                    }
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 200,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
 
-  <script>
-    const titre_alea = [
-      "On joue ?",
-      "On se la colle ?",
-      "On vient se la mettre ?",
-      "On vient se déboiter ?",
-      "On prend sa cuite ?",
-      "On prend une biture ?",
-      "On a soif ?",
-      "On s'arrache la face ?",
-      "On vient se démolir ?",
-      "On s'éclate la tronche ?",
-      "On se met une murge ?",
-      "On se pète la ruche ?",
-      "On se torpille le caisson ?",
-      "On se remplit le cornet ?",
-      "On se retourne la tête ?",
-      "On se prend une timbale ?"
-    ];
-    document.getElementById("titreMenu").innerHTML = titre_alea[Math.floor(Math.random() * titre_alea.length)]
-  </script>
-
-  <script>
-    function listeJoueurss2(message, action) {
-      let tablee = ['i', 'j', 'k', 'l', 'm', "1", 'n', 'o', ")", ".", ",", 'p', 'q', 'r', "<", 's', 't', 'u', 'v', 'w',
-        'd', 'e', 'x', 'y', "Q", "R", "S", "T", "U", 'z', "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
-        "M", "N", "O", "P", "V", 'a', 'b', 'c', 'f', 'g', 'h', "W", "X", "Y", "Z", ";"
-      ]
-      let text = message;
-      let encrypted = "";
-      for (var i = 0; i < text.length; i++) {
-        let positionUn = tablee.indexOf(text[i]);
-        let n = null;
-        if (positionUn != "-1") {
-          n = action == 'encrypt' ? positionUn + 4 : positionUn - 4;
-          if (n >= 58) {
-            n = n - 58;
-          } else if (n < 0) {
-            n = n + 58;
-          }
-          s = tablee[n];
-        } else {
-          s = text[i]
+    <style>
+        #particles-js {
+            position: absolute;
+            width: 100vw;
+            height: 100vh !important;
+            background-color: #fbfbfb;
+            background-repeat: no-repeat;
+            background-size: 60%;
+            background-position: 0 50%;
         }
-        encrypted += s;
-      }
-      //ne pas oublier de escape les " quand on veut le passer en JSON
-      return encrypted;
-    }
 
-    fetch('https://kataku.app/dbjsn.txt')
-      .then(function (response) {
-        return response.text();
-      })
-      .then(function (data) {
-        var jsonrep = JSON.parse(listeJoueurss2(data, 'NJKFFFF'));
-        localStorage.setItem("contenu", JSON.stringify(jsonrep))
-        //console.log(alasql('SELECT * from ? WHERE titre="Action"', [jsonrep]))
-      })
-      .catch(function (err) {
-        console.log(err)
-      });
-  </script>
+        @keyframes blurr {
+            0% {
+                filter: blur(0px)
+            }
 
-  <script>
-    document.addEventListener("DOMContentLoaded", function (e) {
-      document.body.className = '';
-    });
-  </script>
+            10% {
+                filter: blur(3px)
+            }
 
-  <!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+            60% {
+                filter: blur(0px)
+            }
+        }
+
+        #content-desktop {
+            display: block;
+        }
+
+        #content-mobile {
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            #content-desktop {
+                display: none;
+            }
+
+            #content-mobile {
+                display: block;
+            }
+        }
+    </style>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
 </body>
 
 </html>
