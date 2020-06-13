@@ -36,12 +36,24 @@
   <!-- Secondary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="user-interface">
-    <span style="	filter: invert(100%); opacity:0.6; font-size: 30px;" onclick="alert('retour menu')">&#x25BE;</span>
+    <span class="modalQuit">
+      Retour au menu ?
+      <button onclick="document.body.style.opacity = 0;
+      setTimeout(() => {
+          window.location.href = 'index.html';
+      }, 500);">- Oui -
+      </button>
+      <button
+        onclick="document.getElementsByClassName('modalQuit')[0].style.display = 'none';document.getElementById('board').style.opacity = 1">-
+        Non -</button>
+    </span>
+    <span style="	filter: invert(100%); opacity:0.6; font-size: 30px; cursor: pointer;"
+      onclick="document.getElementsByClassName('modalQuit')[0].style.display = 'block'; document.getElementById('board').style.opacity = 0.3">&#x25BE;</span>
   </div>
   <span id="dumb"></span>
 
-  <div class="container" id="board">
 
+  <div class="container" id="board">
     <script>
       let intensFinal = localStorage.getItem('intens');
       let couleur_fond = "hsl(211, 25%, " + String(Math.max(100 - (intensFinal * 100) / 18, 20)) + "%)";
@@ -52,15 +64,14 @@
       var deckImporte = JSON.parse(localStorage.getItem('deckJeu'))
       var compteurDeck = 0
       var joueurs = localStorage.getItem('lesJoueurs').split(',')
+      let dumber = 0;
+      let joueurs_retenus = {};
 
       //La classe a ete importee du fichier ktk.js present dans le dossier JS a cote
       let board = document.querySelector('#board');
       let carousel = new Carousel(board);
-      let dumber = 0;
     </script>
-
   </div>
-
 
   <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

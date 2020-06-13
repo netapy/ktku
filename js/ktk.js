@@ -209,6 +209,19 @@ class Carousel {
             jrs_locaux.push(jrs_filtres[index_alea])
             jrs_filtres.splice(index_alea, 1)
         };
+        if (deckImporte[compteurDeck].type == 2 || deckImporte[compteurDeck].type == 4) {
+            var retenus = [];
+            for (var i = 0; i < joueurs_appeles; i++) {
+                retenus.push(jrs_locaux[i]);
+            }
+            joueurs_retenus[deckImporte[compteurDeck].id] = retenus
+            console.log(joueurs_retenus)
+        } else if (deckImporte[compteurDeck].type == 3 || deckImporte[compteurDeck].type == 5) {
+            for (var i = 0; i < joueurs_appeles; i++) {
+                jrs_locaux[i] = joueurs_retenus[deckImporte[compteurDeck].id_phrase];
+            }
+        };
+
 
         card.innerHTML = '<div class="cardcont"><h5 style="margin-top:15%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '"> <div class="consigne">' + deckImporte[compteurDeck].text.replace('<j1>', jrs_locaux[0]).replace('<j2>', jrs_locaux[1]).replace('<j3>', jrs_locaux[2]) + '</div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'
 
