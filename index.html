@@ -188,6 +188,19 @@
   <script>
     window.history.pushState("null", "null", "/")
   </script>
+  <script>
+    let lstprovjr = localStorage.getItem('lesJoueurs').split(',')
+    console.log(lstprovjr)
+    if (lstprovjr.length >= 3) {
+      for (i in lstprovjr) {
+        let htmlTagJr = "<span onclick='this.parentNode.removeChild(this); adjustBtn()' class='jrSelect'>" + lstprovjr[
+            i] +
+          " </span> ";
+        document.getElementById('dumbPrListe').insertAdjacentHTML('beforebegin', htmlTagJr);
+        adjustBtn();
+      }
+    }
+  </script>
   <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
 </body>
