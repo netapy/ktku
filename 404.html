@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Page Title</title>
+<title>Kataku Link</title>
 </head>
 <body>
-
-<h1>My First Heading</h1>
-<p>My first paragraph.</p>
-
+  
 <script>
   source = String(window.location.href).split('/').pop()
-  alert(source)
+  localStorage.setItem("linkCode", source)
+  window.location.href = 'index.html';
 </script>
 
 </body>
