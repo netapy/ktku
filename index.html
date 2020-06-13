@@ -27,6 +27,7 @@
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="assets/icon.png">
+  <link rel="apple-touch-icon" href="assets/icon192.png">
 
 </head>
 
@@ -189,16 +190,21 @@
     window.history.pushState("null", "null", "/")
   </script>
   <script>
-    let lstprovjr = localStorage.getItem('lesJoueurs').split(',')
-    console.log(lstprovjr)
-    if (lstprovjr.length >= 3) {
-      for (i in lstprovjr) {
-        let htmlTagJr = "<span onclick='this.parentNode.removeChild(this); adjustBtn()' class='jrSelect'>" + lstprovjr[
-            i] +
-          " </span> ";
-        document.getElementById('dumbPrListe').insertAdjacentHTML('beforebegin', htmlTagJr);
-        adjustBtn();
+    try {
+      let lstprovjr = localStorage.getItem('lesJoueurs').split(',')
+      console.log(lstprovjr)
+      if (lstprovjr.length >= 3) {
+        for (i in lstprovjr) {
+          let htmlTagJr = "<span onclick='this.parentNode.removeChild(this); adjustBtn()' class='jrSelect'>" +
+            lstprovjr[
+              i] +
+            " </span> ";
+          document.getElementById('dumbPrListe').insertAdjacentHTML('beforebegin', htmlTagJr);
+          adjustBtn();
+        }
       }
+    } catch (e) {
+      console.log(e)
     }
   </script>
   <!-- End Document

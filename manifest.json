@@ -4,6 +4,7 @@
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FBFBFB",
+    "theme_color": "#363636",
     "description": "Jeu à boire.",
     "icons": [
       {
