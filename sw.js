@@ -1,6 +1,7 @@
-const cacheName = 'static-shell-v1';
+let cacheName = 'ktkache';
+
+
 const staticAssets = [
-    '/',
     'index.html',
     'slider.html',
     'jeu.html',
@@ -8,6 +9,7 @@ const staticAssets = [
     'css/skeleton.css',
     'js/img.js',
     'js/ktk.js',
+    '/',
     'assets/img_cartes/virus.png',
     'assets/img_cartes/point.png',
     'assets/img_cartes/fighter.png',
@@ -112,14 +114,14 @@ self.addEventListener('activate', e => {
     self.clients.claim();
 });
 
+
 self.addEventListener('fetch', async e => {
     const req = e.request;
     const url = new URL(req.url);
-
-    if (url.origin === location.origin) {
-        e.respondWith(cacheFirst(req));
-    } else {
+    if (navigator.onLine) {
         e.respondWith(networkAndCache(req));
+    } else {
+        e.respondWith(cacheFirst(req));
     }
 });
 
@@ -128,7 +130,6 @@ async function cacheFirst(req) {
     const cached = await cache.match(req);
     return cached || fetch(req);
 }
-
 async function networkAndCache(req) {
     const cache = await caches.open(cacheName);
     try {
