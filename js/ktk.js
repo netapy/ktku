@@ -215,7 +215,6 @@ class Carousel {
                 retenus.push(jrs_locaux[i]);
             }
             joueurs_retenus[deckImporte[compteurDeck].id] = retenus
-            console.log(joueurs_retenus)
         } else if (deckImporte[compteurDeck].type == 3 || deckImporte[compteurDeck].type == 5) {
             for (var i = 0; i < joueurs_appeles; i++) {
                 jrs_locaux[i] = joueurs_retenus[deckImporte[compteurDeck].id_phrase];

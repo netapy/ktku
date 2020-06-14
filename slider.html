@@ -149,17 +149,17 @@
           deckFinal.splice(posivir - getRandomInt(5, 8), 0, LSTequiv.filter(cartee => cartee.id == LSTvirus[carte]
             .id_phrase)[0])
         }
-        for (var i = deckFinal.length - 1; i >= 0; i--) {
-          if (deckFinal[i].type == 5) {
-            deckFinal.splice(i, 0, LSTequiv.filter(cartee => cartee.id == deckFinal[i].id_phrase)[0])
-          }
-        }
-        if (intens > 13) {
+        if (intens > 12) {
           deckFinal.splice(Math.round(deckFinal.length * 0.25), 0, LSTzeroes.filter(cartee => cartee.id == 1)[0]);
           deckFinal.splice(Math.round(deckFinal.length * 0.5), 0, LSTzeroes.filter(cartee => cartee.id == 1)[0]);
           deckFinal.splice(Math.round(deckFinal.length * 0.75), 0, LSTzeroes.filter(cartee => cartee.id == 1)[0]);
           deckFinal.unshift(LSTzeroes.filter(cartee => cartee.id == 3)[0]);
           deckFinal.push(LSTzeroes.filter(cartee => cartee.id == 2)[0]);
+        }
+        for (var i = deckFinal.length - 1; i >= 0; i--) {
+          if (deckFinal[i].type == 5) {
+            deckFinal.splice(i, 0, LSTequiv.filter(cartee => cartee.id == deckFinal[i].id_phrase)[0])
+          }
         }
 
         localStorage.setItem("deckJeu", JSON.stringify(deckFinal))

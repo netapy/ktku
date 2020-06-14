@@ -26,8 +26,20 @@
   <script src="js/ktk.js"></script>
   <script data-ad-client="ca-pub-8926121240413723" async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-  <script data-ad-client="ca-pub-8926121240413723" async
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146443684-2"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-146443684-2');
+  </script>
+
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="icon" type="image/png" href="assets/icon.png">
@@ -84,7 +96,13 @@
     let btnSuivantP1 = document.getElementById("suivantPage1")
 
     function ajoutUnJoueur(ee) {
-      if (document.getElementsByClassName('jrSelect').length == 8) {
+      let lstElemdejq = document.getElementsByClassName('jrSelect');
+      for (ii in lstElemdejq) {
+        if (lstElemdejq[ii].innerHTML == String(ee.value) + " ") {
+          return
+        }
+      }
+      if (lstElemdejq.length == 8) {
         alert('Max 8 joueurs')
       } else if (ee.value.replace(" ", "") == "") {
         null;
@@ -197,7 +215,6 @@
   <script>
     try {
       let lstprovjr = localStorage.getItem('lesJoueurs').split(',')
-      console.log(lstprovjr)
       if (lstprovjr.length >= 3) {
         for (i in lstprovjr) {
           let htmlTagJr = "<span onclick='this.parentNode.removeChild(this); adjustBtn()' class='jrSelect'>" +
