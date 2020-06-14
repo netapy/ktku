@@ -221,8 +221,13 @@ class Carousel {
             }
         };
 
+        card.innerHTML = '<div class="cardcont"><h5 style="margin-top:10%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '"> <div class="consigne">' + deckImporte[compteurDeck].text.replace('<j1>', jrs_locaux[0]).replace('<j2>', jrs_locaux[1]).replace('<j3>', jrs_locaux[2]) + '<div class="shyIndic">#!!#</div></div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'
 
-        card.innerHTML = '<div class="cardcont"><h5 style="margin-top:15%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '"> <div class="consigne">' + deckImporte[compteurDeck].text.replace('<j1>', jrs_locaux[0]).replace('<j2>', jrs_locaux[1]).replace('<j3>', jrs_locaux[2]) + '</div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'
+        if (deckImporte[compteurDeck].type == 4) {
+            card.innerHTML = card.innerHTML.replace('#!!#', 'Suite ⤷')
+        } else if (deckImporte[compteurDeck].type == 5) {
+            card.innerHTML = card.innerHTML.replace('#!!#', ' — ')
+        } else(card.innerHTML = card.innerHTML.replace('#!!#', ''))
 
         compteurDeck++;
 

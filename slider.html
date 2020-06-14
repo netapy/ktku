@@ -39,12 +39,19 @@
     <div class="menu">
       <h5 id='titreMenu' style="margin-top:6%; width: 100%; white-space: nowrap;">On se met comment ?</h5>
       <div style="width: 100%; max-height: 30vh;">
-        <img class="brainlet" src="assets/intensite/bouteille1.png" id='CetteSouffrance'>
+        <img class="brainlet" src="assets/intensite/bouteille8.png" id='CetteSouffrance'>
       </div>
-      <div style="width: 100%; font-size:1.5rem;" id='scoreChoisi'>Doux</div>
-      <input type="range" min="0" max="23" step="1" value="0" id='scoreSale'>
+      <div style="width: 100%; font-size:1.5rem;" id='scoreChoisi'>Curieux</div>
+      <input type="range" min="0" max="23" step="1" value="7" id='scoreSale'>
       <div class='row' style='width: 100%; z-index: 10;'>
-        <button class="button-primary" onclick="GOjeu()">- Suivant -</button>
+        <button class="button-primary" style="padding: 0px 10px;" onclick="{
+          document.body.style.opacity = 0;
+          setTimeout(() => {
+              window.location.href = 'index.html';
+          }, 500);
+      }">
+          <</button> <button class="button-primary" onclick="GOjeu()">- Suivant -
+        </button>
       </div>
       <div class="logoktk">
         <img class='logobot' src="assets/logo_kataku_transpar.png" />
