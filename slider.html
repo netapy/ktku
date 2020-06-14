@@ -41,7 +41,7 @@
       <div style="width: 100%; max-height: 30vh;">
         <img class="brainlet" src="assets/intensite/bouteille8.png" id='CetteSouffrance'>
       </div>
-      <div style="width: 100%; font-size:1.5rem;" id='scoreChoisi'>Curieux</div>
+      <div style="width: 100%; font-size:1.5rem;" id='scoreChoisi'>- Curieux -</div>
       <input type="range" min="0" max="23" step="1" value="7" id='scoreSale'>
       <div class='row' style='width: 100%; z-index: 10;'>
         <button class="button-primary" style="padding: 0px 10px;" onclick="{
@@ -91,7 +91,7 @@
     var slider = document.getElementById("scoreSale");
     var output = document.getElementById("scoreChoisi");
     slider.oninput = function () {
-      output.innerHTML = palliers[this.value];
+      output.innerHTML = "- " + String(palliers[this.value]) + " -";
       document.getElementById("CetteSouffrance").src = "assets/intensite/bouteille" + (parseInt(this.value) + 1) +
         ".png"
     }
