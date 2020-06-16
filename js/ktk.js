@@ -229,6 +229,13 @@ class Carousel {
             card.innerHTML = card.innerHTML.replace('#!!#', ' — ')
         } else(card.innerHTML = card.innerHTML.replace('#!!#', ''))
 
+        if (compteurDeck % 8 == 0 && compteurDeck != 0) { // compteurDeck.length / 2) {
+            card.innerHTML = card.innerHTML.replace(
+                '<img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '">',
+                '<div style="height:40%; max-width: 100%, margin-bottom:20px;"><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script><!-- adcarte --><ins class="adsbygoogle"     style="display:block"     data-ad-client="ca-pub-8926121240413723"     data-ad-slot="2167774514"     data-ad-format="auto"     data-full-width-responsive="true"></ins><script>     (adsbygoogle = window.adsbygoogle || []).push({});</script></div>'
+            )
+        }
+
         compteurDeck++;
 
         if (this.board.firstChild) {
