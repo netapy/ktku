@@ -200,28 +200,30 @@ class Carousel {
         let card = document.createElement('div')
         // C'EST ICI QUON CHANGE L'HTML DE LA CARTE.            ---   --  -    ---    - - -         --      ----             - ---         ----              --  -- --- - --  --
         card.classList.add('card')
-
         var joueurs_appeles = (deckImporte[compteurDeck].text.match(/<j/g) || []).length;
         var jrs_locaux = [];
         var jrs_filtres = [...joueurs]; //copie pure de la liste, pas de reference
-        for (var i = 0; i < joueurs_appeles; i++) {
+        for (let i = 0; i < joueurs_appeles; i++) {
             var index_alea = Math.floor(Math.random() * jrs_filtres.length)
             jrs_locaux.push(jrs_filtres[index_alea])
             jrs_filtres.splice(index_alea, 1)
         };
         if (deckImporte[compteurDeck].type == 2 || deckImporte[compteurDeck].type == 4) {
             var retenus = [];
-            for (var i = 0; i < joueurs_appeles; i++) {
+            for (let i = 0; i < joueurs_appeles; i++) {
                 retenus.push(jrs_locaux[i]);
             }
-            joueurs_retenus[deckImporte[compteurDeck].id] = retenus
-        } else if (deckImporte[compteurDeck].type == 3 || deckImporte[compteurDeck].type == 5) {
-            for (var i = 0; i < joueurs_appeles; i++) {
-                jrs_locaux[i] = joueurs_retenus[deckImporte[compteurDeck].id_phrase];
+            joueurs_retenus[deckImporte[compteurDeck].id] = Array(retenus)
+        } else if (deckImporte[compteurDeck].type == 3 || deckImporte[compteurDeck].type == 5 && joueurs_retenus[deckImporte[compteurDeck].id_phrase][0].length != 0) {
+            let lstJoueursreteloc = joueurs_retenus[deckImporte[compteurDeck].id_phrase][0]
+            for (let ii in lstJoueursreteloc) {
+                jrs_locaux[ii] = lstJoueursreteloc[ii];
             }
         };
 
-        card.innerHTML = '<div class="cardcont"><h5 style="margin-top:10%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '"> <div class="consigne">' + deckImporte[compteurDeck].text.replace('<j1>', jrs_locaux[0]).replace('<j2>', jrs_locaux[1]).replace('<j3>', jrs_locaux[2]) + '<div class="shyIndic">#!!#</div></div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'
+        let texteCarteProv = deckImporte[compteurDeck].text.replace(/<j1>/g, jrs_locaux[0]).replace(/<j2>/g, jrs_locaux[1]).replace(/<j3>/g, jrs_locaux[2])
+
+        card.innerHTML = '<div class="cardcont"><h5 style="margin-top:10%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '"> <div class="consigne">' + texteCarteProv + '<div class="shyIndic">#!!#</div></div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'.replace(/undefined/g, jrs_filtres[Math.floor(Math.random() * jrs_filtres.length)])
 
         if (deckImporte[compteurDeck].type == 4) {
             card.innerHTML = card.innerHTML.replace('#!!#', 'Suite ⤷')

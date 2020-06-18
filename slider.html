@@ -22,6 +22,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.6.1/alasql.min.js"></script>
   <script src="js/ktk.js"></script>
+  <script src="js/img.js"></script>
   <script data-ad-client="ca-pub-8926121240413723" async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
@@ -86,6 +87,15 @@
   </script>
 
   <script>
+    var codeActif;
+    if (localStorage.getItem('linkCode') == null || assocCode[localStorage.getItem('linkCode')] == undefined) {
+      codeActif = assocCode['classique']
+    } else {
+      codeActif = assocCode[localStorage.getItem('linkCode')]
+    }
+  </script>
+
+  <script>
     var palliers = ['Hein?', 'Doux', 'Gentil', 'Amical', 'Okk', 'Pas mal', 'Ouvert', 'Curieux', 'Osé', 'Joueur',
       'Entrepreuneur', 'Festif', 'Courageux', 'Ambitieux', 'Déconnecté', 'Stupide', 'Sans amour propre', 'Oubli',
       'Décadence', 'Misère', 'SAMU', '911', '*purification*', 'Kataku.'
@@ -111,30 +121,27 @@
           intensi_loc = "(" + String(intens / 2 - 0.5) + "," + String(intens / 2 + 0.5) + ",0)";
         }
         let dbBrut = JSON.parse(localStorage.getItem("contenu"))
-        let LSTvirus = alasql("SELECT * from ? WHERE groupe = ? AND type = 3 AND intens in " + intensi_loc, [dbBrut,
-          idgroupe
+        let LSTvirus = alasql("SELECT * from ? WHERE groupe in " + idgroupe + " AND type = 3 AND intens in " +
+          intensi_loc, [dbBrut]);
+        let LSTvotes = alasql("SELECT * from ? WHERE groupe in " + idgroupe + " AND type = 5 AND intens in " +
+          intensi_loc, [dbBrut]);
+        let LSTactions = alasql("SELECT * from ? WHERE groupe in " + idgroupe + " AND type = 1 AND intens in " +
+          intensi_loc, [dbBrut]);
+        let LSTequiv = alasql("SELECT * from ? WHERE groupe in " + idgroupe + " AND type in (2,4) AND intens in " +
+          intensi_loc, [
+            dbBrut
+          ]);
+        let LSTzeroes = alasql("SELECT * from ? WHERE groupe in " + idgroupe + " AND intens = 0 ", [
+          dbBrut
         ]);
-        let LSTvotes = alasql("SELECT * from ? WHERE groupe = ? AND type = 5 AND intens in " + intensi_loc, [dbBrut,
-          idgroupe
-        ]);
-        let LSTactions = alasql("SELECT * from ? WHERE groupe = ? AND type = 1 AND intens in " + intensi_loc, [dbBrut,
-          idgroupe
-        ]);
-        let LSTequiv = alasql("SELECT * from ? WHERE groupe = ? AND type in (2,4) AND intens in " + intensi_loc, [
-          dbBrut,
-          idgroupe
-        ]);
-        let LSTzeroes = alasql("SELECT * from ? WHERE groupe = ? AND intens = 0 ", [
-          dbBrut,
-          idgroupe
-        ]);
-        for (i = LSTactions.length - 1; i >= 17; --i) {
+        console.log(LSTzeroes)
+        for (let i = LSTactions.length - 1; i >= 17; --i) {
           LSTactions.splice(Math.floor(Math.random() * LSTactions.length), 1)
         }
-        for (i = LSTvotes.length - 1; i >= 8; --i) {
+        for (let i = LSTvotes.length - 1; i >= 8; --i) {
           LSTvotes.splice(Math.floor(Math.random() * LSTvotes.length), 1)
         }
-        for (i = LSTvirus.length - 1; i >= 4; --i) {
+        for (let i = LSTvirus.length - 1; i >= 4; --i) {
           LSTvirus.splice(Math.floor(Math.random() * LSTvirus.length), 1)
         }
         let deckFinal = [];
@@ -152,7 +159,7 @@
             break
           }
         }
-        for (carte in LSTvirus) {
+        for (let carte in LSTvirus) {
           let posivir = getRandomInt(6, deckFinal.length)
           deckFinal.splice(posivir, 0, LSTvirus[carte])
           deckFinal.splice(posivir - getRandomInt(5, 8), 0, LSTequiv.filter(cartee => cartee.id == LSTvirus[carte]
@@ -165,7 +172,7 @@
           deckFinal.unshift(LSTzeroes.filter(cartee => cartee.id == 3)[0]);
           deckFinal.push(LSTzeroes.filter(cartee => cartee.id == 2)[0]);
         }
-        for (var i = deckFinal.length - 1; i >= 0; i--) {
+        for (let i = deckFinal.length - 1; i >= 0; i--) {
           if (deckFinal[i].type == 5) {
             deckFinal.splice(i, 0, LSTequiv.filter(cartee => cartee.id == deckFinal[i].id_phrase)[0])
           }
@@ -174,7 +181,7 @@
         localStorage.setItem("deckJeu", JSON.stringify(deckFinal))
       }
 
-      buildDeck((parseInt(slider.value) + 1), 1)
+      buildDeck((parseInt(slider.value) + 1), codeActif['grpCarte'])
 
       localStorage.setItem('intens', parseInt(slider.value) + 1);
       //console.log(localStorage.getItem("deckJeu"))

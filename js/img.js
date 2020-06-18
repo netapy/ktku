@@ -1,4 +1,4 @@
-var assocImages = {
+const assocImages = {
     '1': 'assets/img_cartes/virus.png',
     '2': 'assets/img_cartes/point.png',
     '3': 'assets/img_cartes/fighter.png',
@@ -66,4 +66,42 @@ var assocImages = {
     '65': 'assets/img_cartes/passe.png',
     '66': 'assets/img_cartes/present.png',
     '67': 'assets/img_cartes/futur.png'
+}
+
+const assocCode = {
+    'classique': {
+        'titreMenu': [
+            "On joue ?",
+            "On se la colle ?",
+            "On vient se la mettre ?",
+            "On vient se déboiter ?",
+            "On prend sa cuite ?",
+            "On prend une biture ?",
+            "On a soif ?",
+            "On s'arrache la face ?",
+            "On vient se démolir ?",
+            "On s'éclate la tronche ?",
+            "On se met une murge ?",
+            "On se pète la ruche ?",
+            "On se torpille le caisson ?",
+            "On se remplit le cornet ?",
+            "On se retourne la tête ?",
+            "On se prend une timbale ?"
+        ],
+        'imgAcc': 'assets/selecjoueurs.png',
+        'titreSlider': '###',
+        'grpCarte': '(1)'
+    },
+    'test': {
+        'titreMenu': ['*titre aléatoire customisé*'],
+        'imgAcc': 'assets/demologo.png',
+        'titreSlider': '###',
+        'grpCarte': '(1,11)'
+    },
+    'baud': {
+        'titreMenu': ['❤ Baud ❤'],
+        'imgAcc': 'assets/selecjoueurs.png',
+        'titreSlider': '###',
+        'grpCarte': '(1,11)'
+    }
 }
