@@ -81,6 +81,12 @@
       </div>
     </div>
   </div>
+  <div class="installPop">
+    <span style="font-size: 16px; width: 40%; padding:0px 5px; font-family: GapSansBold;">Installe Kataku :</span>
+    <img src="assets/interface/ios_share.png" style="height: 75%; border-radius: 10px;">
+    <span style="padding:0px 10px">→</span>
+    <img src="assets/interface/ios_plus.png" style="height: 75%;border-radius: 10px;">
+  </div>
 
   <script>
     if ('serviceWorker' in navigator) {
@@ -132,6 +138,7 @@
       }
     }
   </script>
+
   <script>
     let Lstjoueurs = []
 
@@ -223,6 +230,15 @@
       }
     } catch (e) {
       console.log(e)
+    }
+  </script>
+
+  <script>
+    if (window.innerHeight > window.innerWidth) {
+      document.body.scroll = 'yes';
+      document.body.style.overflow = '';
+      document.body.style.height = '110vh';
+      document.getElementById('installPop').style.display = "block";
     }
   </script>
   <!-- End Document
