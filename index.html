@@ -234,12 +234,15 @@
   </script>
 
   <script>
-    if (window.innerHeight > window.innerWidth) {
-      document.body.scroll = 'yes';
-      document.body.style.overflow = '';
-      document.body.style.height = '110vh';
-      document.getElementById('installPop').style.display = "block";
+    if (window.matchMedia('(display-mode: standalone)').matches == false) {
+      if (window.innerHeight > window.innerWidth) {
+        document.body.scroll = 'yes';
+        document.body.style.overflow = '';
+        document.body.style.height = '110vh';
+        document.getElementById('installPop').style.display = "block";
+      }
     }
+    
   </script>
   <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
