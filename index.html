@@ -62,8 +62,8 @@
   <div class="installPop">
     <img src="assets/interface/ch_share.png" style="height: 65%; border-radius: 20%; padding-right: 10px">
     <span style="font-size: 14px; width: 60%; padding:0px 5px;">Télécharge <span
-        style="font-family: GapSansBold;">Kataku</span> en tapant sur "<strong
-        style="color: #007AFF;">Menu</strong>" puis "<strong style="color: #007AFF;"> Ajouter à l'écran
+        style="font-family: GapSansBold;">Kataku</span> en tapant sur "<strong style="color: #007AFF;">Menu</strong>"
+      puis "<strong style="color: #007AFF;"> Ajouter à l'écran
         d'accueil</strong>".</span>
   </div>
 
@@ -247,7 +247,7 @@
       if (window.innerHeight > window.innerWidth) {
         document.body.scroll = 'yes';
         document.body.style.overflow = '';
-        if (ua.indexOf('iphone') != -1) {
+        if (ua.indexOf('iphone') != -1 || ua.indexOf('ipad') != -1) {
           document.getElementsByClassName('installPop')[0].style.display = "flex";
         } else {
           document.getElementsByClassName('installPop')[1].style.display = "flex";
