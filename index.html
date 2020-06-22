@@ -37,7 +37,6 @@
       dataLayer.push(arguments);
     }
     gtag('js', new Date());
-
     gtag('config', 'UA-146443684-2');
   </script>
 
@@ -52,6 +51,21 @@
 </head>
 
 <body scroll="no" style="overflow: hidden;">
+
+  <div class="installPop">
+    <img src="assets/interface/share.png" style="height: 65%; border-radius: 20%; padding-right: 10px">
+    <span style="font-size: 14px; width: 60%; padding:0px 5px;">Télécharge <span
+        style="font-family: GapSansBold;">Kataku</span> en tapant sur "<strong
+        style="color: #007AFF;">Partager</strong>" puis "<strong style="color: #007AFF;"> Ajouter à l'écran
+        d'accueil</strong>".</span>
+  </div>
+  <div class="installPop">
+    <img src="assets/interface/ch_share.png" style="height: 65%; border-radius: 20%; padding-right: 10px">
+    <span style="font-size: 14px; width: 60%; padding:0px 5px;">Télécharge <span
+        style="font-family: GapSansBold;">Kataku</span> en tapant sur "<strong
+        style="color: #007AFF;">Menu</strong>" puis "<strong style="color: #007AFF;"> Ajouter à l'écran
+        d'accueil</strong>".</span>
+  </div>
 
   <!-- Primary Page Layout
   ––––––––––––––––––––––––––––––––––––––––––––––––––-->
@@ -80,12 +94,6 @@
         <img class='logobot' src="assets/logo_kataku_transpar.png" />
       </div>
     </div>
-  </div>
-  <div class="installPop">
-    <span style="font-size: 16px; width: 40%; padding:0px 5px; font-family: GapSansBold;">Installe Kataku :</span>
-    <img src="assets/interface/ios_share.png" style="height: 75%; border-radius: 10px;">
-    <span style="padding:0px 10px">→</span>
-    <img src="assets/interface/ios_plus.png" style="height: 75%;border-radius: 10px;">
   </div>
 
   <script>
@@ -234,15 +242,18 @@
   </script>
 
   <script>
+    let ua = navigator.userAgent.toLowerCase();
     if (window.matchMedia('(display-mode: standalone)').matches == false) {
       if (window.innerHeight > window.innerWidth) {
         document.body.scroll = 'yes';
         document.body.style.overflow = '';
-        document.body.style.height = '110vh';
-        document.getElementById('installPop').style.display = "block";
+        if (ua.indexOf('iphone') != -1) {
+          document.getElementsByClassName('installPop')[0].style.display = "flex";
+        } else {
+          document.getElementsByClassName('installPop')[1].style.display = "flex";
+        }
       }
     }
-    
   </script>
   <!-- End Document
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->

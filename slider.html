@@ -160,7 +160,7 @@
           }
         }
         for (let carte in LSTvirus) {
-          let posivir = getRandomInt(6, deckFinal.length)
+          let posivir = getRandomInt(10, deckFinal.length)
           deckFinal.splice(posivir, 0, LSTvirus[carte])
           deckFinal.splice(posivir - getRandomInt(5, 8), 0, LSTequiv.filter(cartee => cartee.id == LSTvirus[carte]
             .id_phrase)[0])
