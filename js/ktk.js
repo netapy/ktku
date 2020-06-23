@@ -62,7 +62,7 @@ class Carousel {
         this.topCard.style.transition = 'transform 100ms ease-out'
 
         // rotate
-        this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(10deg) rotateY(' + rotateY + 'deg) scale(1)'
+        this.topCard.style.transform = 'translateX(-50%) translateY(-50%) rotate(10deg) rotateY(0deg) scale(1)'
 
         // wait transition end
         setTimeout(() => {

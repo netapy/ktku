@@ -228,18 +228,24 @@ body {
   color: #222;
   height: 100%;
   background-color: #FBFBFB;
-  animation: transitionIN 0.5s;
-  transition: .5s ease-in;
+  animation: transitionIN 0.4s;
+  transition: .4s ease-in;
+  -webkit-transition: .4s ease-in;
   transform-origin: center;
+  perspective: 800px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
 }
 
 @keyframes transitionIN {
   0% {
     opacity: 0;
+    transform: rotateY(90deg);
   }
 
   100% {
     opacity: 1;
+    transform: rotateY(0deg);
   }
 }
 

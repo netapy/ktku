@@ -185,7 +185,7 @@
       localStorage.setItem('intens', parseInt(slider.value) + 1);
       //console.log(localStorage.getItem("deckJeu"))
 
-      document.body.style.opacity = 0;
+      document.body.style.transform = "rotateY(-90deg)";
       setTimeout(() => {
         window.location.href = 'jeu.html';
       }, 500);
