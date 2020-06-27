@@ -6,7 +6,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>Kataku</title>
+  <title>- Kataku -</title>
   <meta name="description" content="Kataku">
   <meta name="author" content="LFB">
   <link rel="manifest" href="./manifest.json">
@@ -40,6 +40,25 @@
     gtag('js', new Date());
     gtag('config', 'UA-146443684-2');
   </script>
+  <!-- Google Analytics -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-XXXXX-Y', 'auto');
+    ga('send', 'pageview');
+  </script>
+  <!-- End Google Analytics -->
+
 
   <!-- Favicon
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -82,7 +101,9 @@
         <img class="brainlet" src="assets/selecjoueurs.png">
       </div>
       <div id="listeJoueurs" class="styleLstJoueurs row" tabindex="0">
-        <span id="dumbPrListe"></span>
+        <span id="dumbPrListe"
+          style="opacity: 0.5; padding: 0px 10px; font-weight: 100; text-align: center; font-size: 14px;">
+          L'abus d'alcool est dangereux pour la santé.</span>
       </div>
       <div style="width: 100%; position: relative; margin-bottom: 20px;">
         <span class="btnPlus" style="background-color: #F1F1F1; color: #363636;">☰</span>
@@ -150,6 +171,11 @@
         btnSuivantP1.disabled = true;
         btnSuivantP1.style.opacity = 0.6;
       }
+      if (document.getElementsByClassName('jrSelect').length == 8) {
+        document.getElementById('dumbPrListe').innerHTML = '';
+      } else {
+        document.getElementById('dumbPrListe').innerHTML = '...';
+      }
     }
   </script>
 
@@ -162,7 +188,14 @@
       for (var i = 0; i < spanJoueurs.length; i++) {
         Lstjoueurs.push(spanJoueurs[i].innerHTML)
       }
-      ga('send', "event", "game_stat", "nbJoueurs", "partie", Lstjoueurs.length);
+      ga('send', {
+        hitType: 'event',
+        eventCategory: 'game_stat',
+        eventAction: '1 -> 2',
+        eventLabel: 'nbJoueurs',
+        eventValue: Lstjoueurs.length
+      });
+
       localStorage.setItem('lesJoueurs', Lstjoueurs)
       document.body.style.transform = "rotateY(-90deg)";
       setTimeout(() => {
