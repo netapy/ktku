@@ -160,7 +160,7 @@
       Lstjoueurs = []
       let spanJoueurs = document.getElementsByClassName('jrSelect')
       for (var i = 0; i < spanJoueurs.length; i++) {
-        Lstjoueurs.push(spanJoueurs[i].outerText)
+        Lstjoueurs.push(spanJoueurs[i].innerHTML)
       }
       localStorage.setItem('lesJoueurs', Lstjoueurs)
       document.body.style.transform = "rotateY(-90deg)";
