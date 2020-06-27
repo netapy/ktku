@@ -162,6 +162,7 @@
       for (var i = 0; i < spanJoueurs.length; i++) {
         Lstjoueurs.push(spanJoueurs[i].innerHTML)
       }
+      ga('send', "event", "game_stat", "nbJoueurs", "partie", Lstjoueurs.length);
       localStorage.setItem('lesJoueurs', Lstjoueurs)
       document.body.style.transform = "rotateY(-90deg)";
       setTimeout(() => {
