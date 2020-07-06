@@ -76,7 +76,7 @@
       <h4>Pas de code, <BR>pas de Kataku.</h4>
       <input id="essaiCode" class="champJoueurAjout" placeholder="Code..." maxlength="12" style="width: 150px;">
       <span class="btnPlus" style="background-color: #363636; padding-left: 10px;padding-right: 10px;"
-        onclick="localStorage.setItem('linkCode',document.getElementById('essaiCode').value);verifCode()">&#9886;</span>
+        onclick="localStorage.setItem('linkCode',document.getElementById('essaiCode').value.toLocaleLowerCase());verifCode()">&#9886;</span>
       <p style="font-family: GapSansBold; opacity: .5; font-size: 16px;margin: 16px 0%;">(T'arrives tôt, écrit juste
         "classique",<br> je te le
         demanderais plus après)<p>
@@ -216,17 +216,25 @@
 
   <script>
     var codeActif;
-    if (localStorage.getItem('linkCode') == null || assocCode[localStorage.getItem('linkCode')] == undefined) {
-      codeActif = assocCode['classique']
-    } else {
-      codeActif = assocCode[localStorage.getItem('linkCode')]
-    }
-  </script>
 
-  <script>
-    document.getElementById("titreMenu").innerHTML = codeActif['titreMenu'][Math.floor(Math.random() * codeActif[
-      'titreMenu'].length)];
-    document.getElementsByClassName('brainlet')[0].src = codeActif['imgAcc']
+    function verifCode() {
+      let blockCode = document.getElementsByClassName('blockNoCode')[0]
+      if (!assocCode['LSTCDESAMAJ'].includes(localStorage.getItem("linkCode"))) {
+        blockCode.display = 'flex';
+      } else {
+        codeActif = assocCode[localStorage.getItem("linkCode").toLocaleLowerCase()]
+        document.getElementById("titreMenu").innerHTML = codeActif['titreMenu'][Math.floor(Math.random() * codeActif[
+          'titreMenu'].length)];
+        document.getElementsByClassName('brainlet')[0].src = codeActif['imgAcc']
+        setTimeout(() => {
+          blockCode.parentNode.removeChild(blockCode)
+        }, 300);
+        blockCode.style.transform = "translateX(-100vw)";
+        blockCode.style.opacity = 0;
+      }
+    }
+
+    verifCode();
   </script>
 
   <script>
@@ -292,20 +300,6 @@
 
   <script>
     let ua = navigator.userAgent.toLowerCase();
-
-    function verifCode() {
-      let blockCode = document.getElementsByClassName('blockNoCode')[0]
-      if (!assocCode['LSTCDESAMAJ'].includes(localStorage.getItem("linkCode"))) {
-        blockCode.display = 'flex';
-      } else {
-        setTimeout(() => {
-          blockCode.parentNode.removeChild(blockCode)
-        }, 300);
-        blockCode.style.transform = "translateX(-100vw)";
-        blockCode.style.opacity = 0;
-      }
-    }
-    verifCode();
     if (window.matchMedia('(display-mode: standalone)').matches == false) {
       if (window.innerHeight > window.innerWidth) {
         document.body.scroll = 'yes';
