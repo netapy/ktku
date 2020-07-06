@@ -921,3 +921,15 @@ input[type="range"]::-webkit-slider-thumb:active {
   justify-content: center;
   overflow: hidden;
 }
+
+.blockNoCode {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: .3s ease-in-out;
+}

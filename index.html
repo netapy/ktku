@@ -71,7 +71,17 @@
 </head>
 
 <body scroll="no" style="overflow: hidden;">
-
+  <div class="blockNoCode">
+    <div style="padding: 0px 20px;">
+      <h4>Pas de code, <BR>pas de Kataku.</h4>
+      <input id="essaiCode" class="champJoueurAjout" placeholder="Code..." maxlength="12" style="width: 150px;">
+      <span class="btnPlus" style="background-color: #363636; padding-left: 10px;padding-right: 10px;"
+        onclick="localStorage.setItem('linkCode',document.getElementById('essaiCode').value);verifCode()">&#9886;</span>
+      <p style="font-family: GapSansBold; opacity: .5; font-size: 16px;margin: 16px 0%;">(T'arrives tôt, écrit juste
+        "classique",<br> je te le
+        demanderais plus après)<p>
+    </div>
+  </div>
   <div class="installPop">
     <img src="assets/icon2.png"
       style="height: 75%; margin-right: 12px; border-radius: 20%; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
@@ -282,6 +292,20 @@
 
   <script>
     let ua = navigator.userAgent.toLowerCase();
+
+    function verifCode() {
+      let blockCode = document.getElementsByClassName('blockNoCode')[0]
+      if (!assocCode['LSTCDESAMAJ'].includes(localStorage.getItem("linkCode"))) {
+        blockCode.display = 'flex';
+      } else {
+        setTimeout(() => {
+          blockCode.parentNode.removeChild(blockCode)
+        }, 300);
+        blockCode.style.transform = "translateX(-100vw)";
+        blockCode.style.opacity = 0;
+      }
+    }
+    verifCode();
     if (window.matchMedia('(display-mode: standalone)').matches == false) {
       if (window.innerHeight > window.innerWidth) {
         document.body.scroll = 'yes';

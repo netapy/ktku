@@ -69,6 +69,7 @@ const assocImages = {
 }
 
 const assocCode = {
+    'LSTCDESAMAJ':["classique","test","baud"],
     'classique': {
         'titreMenu': [
             "On joue ?",
@@ -99,7 +100,7 @@ const assocCode = {
         'grpCarte': '(1,11)'
     },
     'baud': {
-        'titreMenu': ['❤ Baud ❤'],
+        'titreMenu': ['Baud <3'],
         'imgAcc': 'assets/selecjoueurs.png',
         'titreSlider': '###',
         'grpCarte': '(1,11)'
