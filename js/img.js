@@ -69,7 +69,7 @@ const assocImages = {
 }
 
 const assocCode = {
-    'LSTCDESAMAJ': ["classique", "test", "baud", "wanted"],
+    'LSTCDESAMAJ': ["classique", "test", "baud", "wanted", "neurchi"],
     'classique': {
         'titreMenu': [
             "On joue ?",
@@ -113,6 +113,29 @@ const assocCode = {
             "On se prend une timbale ?"
         ],
         'imgAcc': 'assets/selecjoueurs.png',
+        'titreSlider': '###',
+        'grpCarte': '(1)'
+    },
+    'neurchi': {
+        'titreMenu': [
+            "On joue ?",
+            "On se la colle ?",
+            "On vient se la mettre ?",
+            "On vient se déboiter ?",
+            "On prend sa cuite ?",
+            "On prend une biture ?",
+            "On a soif ?",
+            "On s'arrache la face ?",
+            "On vient se démolir ?",
+            "On s'éclate la tronche ?",
+            "On se met une murge ?",
+            "On se pète la ruche ?",
+            "On se torpille le caisson ?",
+            "On se remplit le cornet ?",
+            "On se retourne la tête ?",
+            "On se prend une timbale ?"
+        ],
+        'imgAcc': 'assets/accueilNeurchi.png',
         'titreSlider': '###',
         'grpCarte': '(1)'
     },
