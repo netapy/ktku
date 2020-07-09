@@ -69,7 +69,7 @@ const assocImages = {
 }
 
 const assocCode = {
-    'LSTCDESAMAJ': ["classique", "test", "baud"],
+    'LSTCDESAMAJ': ["classique", "test", "baud", "wanted"],
     'classique': {
         'titreMenu': [
             "On joue ?",
