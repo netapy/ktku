@@ -52,7 +52,7 @@
   <!-- Secondary Page Layout
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <div class="user-interface">
-    <span class="modalQuit">
+    <span id="modalquitter" class="modalQuit">
       Retour au menu ?
       <button onclick="document.body.style.transform = 'rotateY(-90deg)';
       setTimeout(() => {
@@ -60,24 +60,35 @@
       }, 500);">- Oui -
       </button>
       <button
-        onclick="document.getElementsByClassName('modalQuit')[0].style.display = 'none';document.getElementById('board').style.opacity = 1">-
+        onclick="document.getElementById('modalquitter').style.display = 'none'; document.getElementById('board').style.opacity = 1">-
         Non -</button>
+    </span>
+    <span id="modalVirus" class="modalQuit">
+      <span id="listeVirus">
+        <span id="dummyvir"></span>
+      </span>
+      <br><button
+        onclick="document.getElementById('modalVirus').style.display='none';document.getElementById('board').style.opacity = 1;">
+        - ok - </button>
     </span>
     <span
       style="opacity:0.7; font-size: 30px; cursor: pointer; padding: 20px; outline: 0; color: grey; mix-blend-mode: difference;"
-      onclick="document.getElementsByClassName('modalQuit')[0].style.display = 'block'; document.getElementById('board').style.opacity = 0.3">&#x25BE;</span>
+      onclick="document.getElementById('modalquitter').style.display = 'block'; document.getElementById('board').style.opacity = 0.3">&#x25BE;</span>
   </div>
   <span id="dumb"></span>
 
 
   <div class="container" id="board">
+    <div id="virusbadgecontainer" class="virusRemind">
+    </div>
+
     <script>
       let intensFinal = localStorage.getItem('intens');
       let couleur_fond = "hsl(211, 25%, " + String(Math.max(100 - (intensFinal * 100) / 18, 20)) + "%)";
       document.getElementById('board').style.backgroundColor = 'transparent';
       document.body.style.backgroundColor = couleur_fond;
       document.body.style.transition = "2s ease"
-
+      var indiceVirus = 0
       var deckImporte = JSON.parse(localStorage.getItem('deckJeu'))
       var compteurDeck = 0
       var joueurs = localStorage.getItem('lesJoueurs').split(',')

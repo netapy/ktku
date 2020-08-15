@@ -222,15 +222,15 @@ html {
 body {
   font-size: 1.5em;
   /* currently ems cause chrome bug misinterpreting rems on body element */
-  line-height: 1.6;
+  line-height: 1.3;
   font-weight: 500;
   font-family: Arial, Helvetica, sans-serif;
   color: #222;
   height: 100%;
   background-color: #FBFBFB;
-  animation: transitionIN 0.4s;
-  transition: .4s ease-in;
-  -webkit-transition: .4s ease-in;
+  animation: transitionIN 0.2s;
+  transition: .2s ease-in;
+  -webkit-transition: .2s ease-in;
   transform-origin: center;
   perspective: 800px;
   transform-style: preserve-3d;
@@ -932,4 +932,34 @@ input[type="range"]::-webkit-slider-thumb:active {
   justify-content: center;
   z-index: 99999;
   transition: .3s ease-in-out;
+}
+
+.virusRemind {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  z-index: 99;
+  margin-top: 5px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.virusTicket {
+  background-color: #e9e9e9b7;
+  border-radius: 60%;
+  padding: 1px 6px;
+  border-width: 2px;
+  border-style: groove;
+  border-color: #444444;
+  font-family: GapSansBold;
+  font-size: 22px;
+}
+
+.consigneRetenue {
+  font-size: 18px;
+  line-height: 0;
 }

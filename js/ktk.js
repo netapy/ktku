@@ -170,19 +170,30 @@ class Carousel {
                         this.push()
                         if (this.nextCard.firstChild.firstChild.innerHTML == "Virus") {
                             document.body.style.backgroundColor = '#A54040FF';
+                            indiceVirus += 1;
+                            document.getElementById('virusbadgecontainer').innerHTML = '<span class="virusTicket" onclick="document.getElementById(\'modalVirus\').style.display = \'block\'; document.getElementById(\'board\').style.opacity = 0.3">' + indiceVirus + '*</span>';
+                            document.getElementById("dummyvir").insertAdjacentHTML('afterend', "<span class='consigneRetenue'>&#8226; " + this.nextCard.firstChild.children[2].innerHTML.replace(/<\/?[^>]+(>|$)/g, "") + "<br></span>")
                             setTimeout(function () {
                                 document.body.style.backgroundColor = couleur_fond;
                             }, 1500)
                         } else if (this.nextCard.firstChild.firstChild.innerHTML == "Antidote") {
                             document.body.style.backgroundColor = '#448952FF';
+                            indiceVirus -= 1;
+                            document.getElementById('virusbadgecontainer').innerHTML = '<span class="virusTicket" onclick="document.getElementById(\'modalVirus\').style.display = \'block\'; document.getElementById(\'board\').style.opacity = 0.3">' + indiceVirus + '*</span>' //ON PEUT PAS FONCTIONNER COMME CA, CERTAINS VIRUS SE CROISENT ET DONC S'ANNULENT MAL DANS LE BLOC NOTE
                             setTimeout(function () {
                                 document.body.style.backgroundColor = couleur_fond;
                             }, 1500)
+                            let eleme = document.getElementById("listeVirus").children[document.getElementById("listeVirus").children.length - 1]
+                            console.log(eleme);
+                            eleme.parentNode.removeChild(eleme);
                         } else if (this.nextCard.firstChild.firstChild.innerHTML == "Fosse") {
                             document.body.style.backgroundColor = '#835833FF';
                             setTimeout(function () {
                                 document.body.style.backgroundColor = couleur_fond;
                             }, 1500)
+                        }
+                        if (indiceVirus == 0) {
+                            document.getElementById('virusbadgecontainer').innerHTML = ''
                         }
                     }
                     // handle gestures on new top card
