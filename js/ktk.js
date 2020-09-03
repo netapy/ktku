@@ -242,12 +242,12 @@ class Carousel {
             card.innerHTML = card.innerHTML.replace('#!!#', ' — ')
         } else(card.innerHTML = card.innerHTML.replace('#!!#', ''))
 
-        if (compteurDeck % 8 == 0 && compteurDeck != 0) { // compteurDeck.length / 2) {
-            card.innerHTML = card.innerHTML.replace(
-                '<img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '">',
-                '<div style="height:40%; max-width: 100%, margin-bottom:20px;"></div>'
-            )
-        }
+        //if (compteurDeck % 8 == 0 && compteurDeck != 0) { // compteurDeck.length / 2) {
+        //    card.innerHTML = card.innerHTML.replace(
+        //        '<img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '">',
+        //        '<div style="height:40%; max-width: 100%, margin-bottom:20px;"></div>'
+        //    )
+        //}
 
         compteurDeck++;
 
