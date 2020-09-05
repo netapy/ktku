@@ -69,7 +69,7 @@ const assocImages = {
 }
 
 const assocCode = {
-    'LSTCDESAMAJ': ["classique", "test", "baud", "wanted", "neurchi"],
+    'LSTCDESAMAJ': ["classique", "test", "baud", "wanted", "neurchi","suddeslandes"],
     'classique': {
         'titreMenu': [
             "On joue ?",
@@ -147,6 +147,12 @@ const assocCode = {
     },
     'baud': {
         'titreMenu': ['Baud <3'],
+        'imgAcc': 'assets/selecjoueurs.png',
+        'titreSlider': '###',
+        'grpCarte': '(1,11)'
+    },
+    'suddeslandes': {
+        'titreMenu': ['Sud des Landes'],
         'imgAcc': 'assets/selecjoueurs.png',
         'titreSlider': '###',
         'grpCarte': '(1,11)'
