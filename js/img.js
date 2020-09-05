@@ -155,6 +155,6 @@ const assocCode = {
         'titreMenu': ['Sud des Landes'],
         'imgAcc': 'assets/selecjoueurs.png',
         'titreSlider': '###',
-        'grpCarte': '(1,11)'
+        'grpCarte': '(1)'
     }
 }
