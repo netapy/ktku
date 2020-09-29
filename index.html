@@ -70,13 +70,29 @@
   <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
 </head>
 
+<script>var dateActuelle = new Date();</script>
 <body scroll="no" style="overflow: hidden;">
+  <div class="blockNoCode" id="disclaimerBlock">
+    <div
+      style="border-color: #b8b8b8; border-style: dotted; padding: 30px 10px; font-size: 16px; margin: 0px 20px; text-align: center; max-width: 500px;">
+      <img src="assets/img_cartes/GOAT.png" style="width:80%; max-width: 300px;;margin: 20px 40px;"><br>
+      L'abus d'alcool est dangereux pour la santé. Kataku est interdit aux mineurs et n'est pas reponsable d'incidents
+      liés à son utilisation.<br>
+      <button style="margin: 25px 0px;"
+        onclick="this.parentNode.parentNode.style.display='none'; localStorage.setItem('disclaimer',String(dateActuelle.getDate()))">J'accepte.</button>
+    </div>
+  </div>
+  <script>
+    if (localStorage.getItem('disclaimer') == dateActuelle.getDate()) {
+      document.getElementById("disclaimerBlock").style.display = "none"
+    }
+  </script>
   <div class="blockNoCode">
     <div style="padding: 0px 20px;">
       <h4>Pas de code, <BR>pas de Kataku.</h4>
       <input id="essaiCode" class="champJoueurAjout" placeholder="Code..." maxlength="12" style="width: 150px;">
       <span class="btnPlus" style="background-color: #363636; padding-left: 10px;padding-right: 10px;"
-        onclick="localStorage.setItem('linkCode',document.getElementById('essaiCode').value.toLocaleLowerCase());verifCode()">&#9886;</span>
+        onclick="localStorage.setItem('linkCode',document.getElementById('essaiCode').value.toLocaleLowerCase());verifCode()"> > </span>
       <p style="font-family: GapSansBold; opacity: .5; font-size: 16px;margin: 16px 0%;">(T'arrives tôt, écris juste
         "classique",<br> je te le
         demanderais plus après)<p>
@@ -112,9 +128,8 @@
       </div>
       <div id="listeJoueurs" class="styleLstJoueurs row" tabindex="0">
         <span id="dumbPrListe"
-          style="opacity: 0.5; padding: 0px 35px; font-weight: 100; text-align: center; font-size: 12px;">
-          L'abus d'alcool est dangereux pour la santé.<br>Le jeu est interdit aux mineurs.
-          <br>Kataku n'est pas reponsable d'incidents liés à son utilisation.</span>
+          style="opacity: 0.5; padding: 0px 35px; font-weight: 100; text-align: center; font-size: 12px;">...
+        </span>
       </div>
       <div style="width: 100%; position: relative; margin-bottom: 20px;">
         <span class="btnPlus" style="background-color: #F1F1F1; color: #363636;">☰</span>
@@ -217,7 +232,7 @@
     var codeActif;
 
     function verifCode() {
-      let blockCode = document.getElementsByClassName('blockNoCode')[0]
+      let blockCode = document.getElementsByClassName('blockNoCode')[1]
       if (!assocCode['LSTCDESAMAJ'].includes(localStorage.getItem("linkCode"))) {
         blockCode.display = 'flex';
       } else {

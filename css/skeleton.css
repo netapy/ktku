@@ -821,6 +821,9 @@ there.
   display: block;
   cursor: pointer;
 }
+.jrSelect:hover{
+  text-decoration: line-through;
+}
 
 .mainContainer {
   height: 100vh;
@@ -962,4 +965,15 @@ input[type="range"]::-webkit-slider-thumb:active {
 .consigneRetenue {
   font-size: 18px;
   line-height: 0;
+}
+
+
+::-moz-selection {
+  background-color: #444;
+  color: white;
+}
+
+::selection {
+  background-color: #444;
+  color: white;
 }

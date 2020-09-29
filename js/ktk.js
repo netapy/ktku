@@ -242,6 +242,7 @@ class Carousel {
             card.innerHTML = card.innerHTML.replace('#!!#', ' — ')
         } else(card.innerHTML = card.innerHTML.replace('#!!#', ''))
 
+        //SCRIPT POUR LES PUBS
         //if (compteurDeck % 8 == 0 && compteurDeck != 0) { // compteurDeck.length / 2) {
         //    card.innerHTML = card.innerHTML.replace(
         //        '<img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '">',
@@ -249,7 +250,7 @@ class Carousel {
         //    )
         //}
 
-        compteurDeck++;
+        compteurDeck++; 
 
         if (this.board.firstChild) {
             this.board.insertBefore(card, this.board.firstChild);
