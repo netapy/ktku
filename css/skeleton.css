@@ -939,8 +939,9 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 .virusRemind {
   position: absolute;
-  text-align: center;
-  width: 100%;
+  text-align: right;
+  width: 90%;
+  max-width: 500px;
   z-index: 99;
   margin-top: 5px;
   -webkit-touch-callout: none;

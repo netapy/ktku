@@ -168,7 +168,9 @@ class Carousel {
                     // add new card
                     if (typeof deckImporte[compteurDeck] != 'undefined') {
                         this.push()
-                        if (this.nextCard.firstChild.firstChild.innerHTML == "Virus") {
+                        //Ici on peut voir tous les attributs de la carte actuellement en face du joueur
+                        //console.log(this.nextCard.firstChild)
+                        if (this.nextCard.firstChild.attributes["data-ctype"].value == 2) {
                             document.body.style.backgroundColor = '#A54040FF';
                             indiceVirus += 1;
                             document.getElementById('virusbadgecontainer').innerHTML = '<span class="virusTicket" onclick="document.getElementById(\'modalVirus\').style.display = \'block\'; document.getElementById(\'board\').style.opacity = 0.3">' + indiceVirus + '*</span>';
@@ -176,7 +178,7 @@ class Carousel {
                             setTimeout(function () {
                                 document.body.style.backgroundColor = couleur_fond;
                             }, 1500)
-                        } else if (this.nextCard.firstChild.firstChild.innerHTML == "Antidote") {
+                        } else if (this.nextCard.firstChild.attributes["data-ctype"].value == 3) {
                             document.body.style.backgroundColor = '#448952FF';
                             indiceVirus -= 1;
                             document.getElementById('virusbadgecontainer').innerHTML = '<span class="virusTicket" onclick="document.getElementById(\'modalVirus\').style.display = \'block\'; document.getElementById(\'board\').style.opacity = 0.3">' + indiceVirus + '*</span>' //ON PEUT PAS FONCTIONNER COMME CA, CERTAINS VIRUS SE CROISENT ET DONC S'ANNULENT MAL DANS LE BLOC NOTE
@@ -234,7 +236,7 @@ class Carousel {
 
         let texteCarteProv = deckImporte[compteurDeck].text.replace(/<j1>/g, jrs_locaux[0]).replace(/<j2>/g, jrs_locaux[1]).replace(/<j3>/g, jrs_locaux[2])
 
-        card.innerHTML = '<div class="cardcont"><h5 style="margin-top:10%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '"> <div class="consigne">' + texteCarteProv + '<div class="shyIndic">#!!#</div></div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'.replace(/undefined/g, jrs_filtres[Math.floor(Math.random() * jrs_filtres.length)])
+        card.innerHTML = '<div class="cardcont" data-ctype="'+ deckImporte[compteurDeck].type +'"><h5 style="margin-top:10%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '"> <div class="consigne">' + texteCarteProv + '<div class="shyIndic">#!!#</div></div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'.replace(/undefined/g, jrs_filtres[Math.floor(Math.random() * jrs_filtres.length)])
 
         if (deckImporte[compteurDeck].type == 4) {
             card.innerHTML = card.innerHTML.replace('#!!#', 'Suite ⤷')
