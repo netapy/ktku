@@ -70,7 +70,10 @@
   <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
 </head>
 
-<script>var dateActuelle = new Date();</script>
+<script>
+  var dateActuelle = new Date();
+</script>
+
 <body scroll="no" style="overflow: hidden;">
   <div class="blockNoCode" id="disclaimerBlock">
     <div
@@ -87,7 +90,7 @@
       document.getElementById("disclaimerBlock").style.display = "none"
     }
   </script>
-  <div class="blockNoCode">
+  <!-- <div class="blockNoCode">
     <div style="padding: 0px 20px;">
       <h4>Pas de code, <BR>pas de Kataku.</h4>
       <input id="essaiCode" class="champJoueurAjout" placeholder="Code..." maxlength="12" style="width: 150px;">
@@ -97,7 +100,7 @@
         "classique",<br> je te le
         demanderais plus après)<p>
     </div>
-  </div>
+  </div> -->
   <div class="installPop">
     <img src="assets/icon2.png"
       style="height: 75%; margin-right: 12px; border-radius: 20%; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
@@ -234,20 +237,16 @@
     function verifCode() {
       let blockCode = document.getElementsByClassName('blockNoCode')[1]
       if (!assocCode['LSTCDESAMAJ'].includes(localStorage.getItem("linkCode"))) {
-        blockCode.display = 'flex';
+        localStorage.setItem("linkCode", "democode");
+        codeActif = "democode"
       } else {
         codeActif = assocCode[localStorage.getItem("linkCode").toLocaleLowerCase()]
-        document.getElementById("titreMenu").innerHTML = codeActif['titreMenu'][Math.floor(Math.random() * codeActif[
-          'titreMenu'].length)];
-        document.getElementsByClassName('brainlet')[0].src = codeActif['imgAcc']
-        setTimeout(() => {
-          blockCode.parentNode.removeChild(blockCode)
-        }, 300);
-        blockCode.style.transform = "translateX(-100vw)";
-        blockCode.style.opacity = 0;
       }
-    }
+      document.getElementById("titreMenu").innerHTML = codeActif['titreMenu'][Math.floor(Math.random() * codeActif[
+        'titreMenu'].length)];
+      document.getElementsByClassName('brainlet')[0].src = codeActif['imgAcc']
 
+    }
     verifCode();
   </script>
 
