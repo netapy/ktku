@@ -85,22 +85,33 @@
         onclick="this.parentNode.parentNode.style.display='none'; localStorage.setItem('disclaimer',String(dateActuelle.getDate()))">J'accepte.</button>
     </div>
   </div>
+  <div class="user-interface">
+    <span id="modalVirus" class="modalQuit" style="bottom: 30vh;">
+      <span id="listeVirus">
+        <span id="dummyvir"></span>
+      </span>
+      <br>
+      <input id="champCode" class="champJoueurAjout" placeholder="Code Kataku..." maxlength="12" style="min-width: 70%;">
+      <button style="width: 20%; padding: 0px;" onclick="document.getElementById('modalVirus').style.display='none';
+        document.getElementsByClassName('mainContainer')[0].style.opacity = 1;
+        let champsCode = document.getElementById('champCode').value;
+        if(assocCode['LSTCDESAMAJ'].includes(champsCode)){
+          console.log('okk code rentré');
+          localStorage.setItem('linkCode',champsCode);
+          codeActif = champsCode;
+          verifCode();
+        };
+        ">
+        - ok - </button>
+    </span>
+  </div>
+
   <script>
     if (localStorage.getItem('disclaimer') == dateActuelle.getDate()) {
       document.getElementById("disclaimerBlock").style.display = "none"
     }
   </script>
-  <!-- <div class="blockNoCode">
-    <div style="padding: 0px 20px;">
-      <h4>Pas de code, <BR>pas de Kataku.</h4>
-      <input id="essaiCode" class="champJoueurAjout" placeholder="Code..." maxlength="12" style="width: 150px;">
-      <span class="btnPlus" style="background-color: #363636; padding-left: 10px;padding-right: 10px;"
-        onclick="localStorage.setItem('linkCode',document.getElementById('essaiCode').value.toLocaleLowerCase());verifCode()"> > </span>
-      <p style="font-family: GapSansBold; opacity: .5; font-size: 16px;margin: 16px 0%;">(T'arrives tôt, écris juste
-        "classique",<br> je te le
-        demanderais plus après)<p>
-    </div>
-  </div> -->
+
   <div class="installPop">
     <img src="assets/icon2.png"
       style="height: 75%; margin-right: 12px; border-radius: 20%; box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);">
@@ -135,7 +146,8 @@
         </span>
       </div>
       <div style="width: 100%; position: relative; margin-bottom: 20px;">
-        <span class="btnPlus" style="background-color: #F1F1F1; color: #363636;">☰</span>
+        <span class="btnPlus" style="background-color: #F1F1F1; color: #363636;"
+          onclick="document.getElementById('modalVirus').style.display='flex'; document.getElementsByClassName('mainContainer')[0].style.opacity = 0.4;">☰</span>
         <input id="champJoueur" class="champJoueurAjout" placeholder="Joueur..." maxlength="8">
         <span class="btnPlus" style="background-color: #363636; padding-left: 10px;padding-right: 10px;"
           onclick="ajoutUnJoueur(document.getElementById('champJoueur'))">+</span>
