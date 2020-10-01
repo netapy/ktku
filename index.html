@@ -94,7 +94,7 @@
       <input id="champCode" class="champJoueurAjout" placeholder="Code Kataku..." maxlength="12" style="min-width: 70%;">
       <button style="width: 20%; padding: 0px;" onclick="document.getElementById('modalVirus').style.display='none';
         document.getElementsByClassName('mainContainer')[0].style.opacity = 1;
-        let champsCode = document.getElementById('champCode').value;
+        let champsCode = document.getElementById('champCode').value.toLowerCase();
         if(assocCode['LSTCDESAMAJ'].includes(champsCode)){
           console.log('okk code rentré');
           localStorage.setItem('linkCode',champsCode);
