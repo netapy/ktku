@@ -103,7 +103,7 @@
     var output = document.getElementById("scoreChoisi");
     slider.oninput = function () {
       if (this.value / 2 % 1 == 0 && this.value != 23) {
-        output.innerHTML = "- " + String(palliers[this.value]) + "<span class='rmxlogo'> (Mix)</span> -";
+        output.innerHTML = "- " + String(palliers[this.value]) + " -<br><span class='rmxlogo'>(Mix)</span>";
       } else {
         output.innerHTML = "- " + String(palliers[this.value]) + " -";
       }

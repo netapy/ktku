@@ -972,7 +972,8 @@ input[type="range"]::-webkit-slider-thumb:active {
 .rmxlogo{
   opacity: .5;
   font-size: 12px;
-  padding-bottom: 20px;
+  position: absolute;
+  transform: translateX(-10px);
 }
 
 ::-moz-selection {
