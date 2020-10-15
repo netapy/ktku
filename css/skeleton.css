@@ -821,7 +821,8 @@ there.
   display: block;
   cursor: pointer;
 }
-.jrSelect:hover{
+
+.jrSelect:hover {
   text-decoration: line-through;
 }
 
@@ -968,6 +969,11 @@ input[type="range"]::-webkit-slider-thumb:active {
   line-height: 0;
 }
 
+.rmxlogo{
+  opacity: .5;
+  font-size: 12px;
+  padding-bottom: 20px;
+}
 
 ::-moz-selection {
   background-color: #444;

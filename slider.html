@@ -12,7 +12,7 @@
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes" />  
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
   <!-- CSS
@@ -102,7 +102,11 @@
     var slider = document.getElementById("scoreSale");
     var output = document.getElementById("scoreChoisi");
     slider.oninput = function () {
-      output.innerHTML = "- " + String(palliers[this.value]) + " -";
+      if (this.value / 2 % 1 == 0 && this.value != 23) {
+        output.innerHTML = "- " + String(palliers[this.value]) + "<span class='rmxlogo'> (Mix)</span> -";
+      } else {
+        output.innerHTML = "- " + String(palliers[this.value]) + " -";
+      }
       document.getElementById("CetteSouffrance").src = "assets/intensite/bouteille" + (parseInt(this.value) + 1) +
         ".png"
     }
@@ -115,10 +119,12 @@
         } else if (intens / 2 == 12) {
           intensi_loc = "(11, 12,0)";
         } else if (intens / 2 % 1 == 0) {
-          intensi_loc = "(" + String(intens / 2 - 1) + "," + String(intens / 2) + "," + String(intens / 2 + 1) + ",0)";
+          intensi_loc = "(" + String(intens / 2) + ",0)";
         } else {
+          //le niveau "remix"
           intensi_loc = "(" + String(intens / 2 - 0.5) + "," + String(intens / 2 + 0.5) + ",0)";
         }
+
         let dbBrut = JSON.parse(localStorage.getItem("contenu"))
         let LSTvirus = alasql("SELECT * from ? WHERE groupe in " + idgroupe + " AND type = 3 AND intens in " +
           intensi_loc, [dbBrut]);
