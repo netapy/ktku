@@ -45,8 +45,7 @@
                 style="width: 100%; height: 50vh; display: flex; align-items: center; justify-content: center; flex-direction: column;">
                 <img style="width: 90%; padding: 20px 0px; max-width: 350px;" src="assets/intensite/voisine1.png" id='CetteSouffrance'>
                 <span id="decibelz" style="font-size: 40px; font-family: 'GapSansBold';"></span>
-                <button id="btnDebut" onclick='terr()'>Activer le micro.</button>
-                <canvas id="meter" style="width: 0px;"></canvas>
+                <button id="btnDebut">Activer le micro.</button>
             </div>
             <div style="width: 100%; font-size:1.5rem;" id='scoreChoisi'>-</div>
             <div class="logoktk">
@@ -56,93 +55,7 @@
     </div>
 
     <script>
-        var audioContext = null;
-        var meter = null;
-        var canvasContext = null;
-        var WIDTH = 500;
-        var HEIGHT = 50;
-        var rafID = null;
-
-        function terr() {
-            document.getElementById("decibelz").innerHTML = "0 db"
-            document.getElementById("btnDebut").style.display = "none";
-            // grab our canvas
-            canvasContext = document.getElementById("meter").getContext("2d");
-
-            // monkeypatch Web Audio
-            window.AudioContext = window.AudioContext || window.webkitAudioContext;
-
-            // grab an audio context
-            audioContext = new AudioContext();
-
-            // Attempt to get audio input
-            try {
-                // monkeypatch getUserMedia
-                navigator.getUserMedia =
-                    navigator.getUserMedia ||
-                    navigator.webkitGetUserMedia ||
-                    navigator.mozGetUserMedia;
-
-                // ask for an audio input
-                navigator.getUserMedia({
-                    "audio": {
-                        "mandatory": {
-                            "googEchoCancellation": "false",
-                            "googAutoGainControl": "false",
-                            "googNoiseSuppression": "false",
-                            "googHighpassFilter": "false"
-                        },
-                        "optional": []
-                    },
-                }, onMicrophoneGranted, onMicrophoneDenied);
-            } catch (e) {
-                alert('getUserMedia threw exception :' + e);
-            }
-
-        }
-
-        function onMicrophoneDenied() {
-            alert('Ton micro marche pas, gros.');
-        }
-
-        var mediaStreamSource = null;
-
-        function onMicrophoneGranted(stream) {
-            // Create an AudioNode from the stream.
-            mediaStreamSource = audioContext.createMediaStreamSource(stream);
-
-            // Create a new volume meter and connect it.
-            meter = createAudioMeter(audioContext);
-            mediaStreamSource.connect(meter);
-
-            // kick off the visual updating
-            onLevelChange();
-        }
-
-        function onLevelChange(time) {
-            // clear the background
-            canvasContext.clearRect(0, 0, WIDTH, HEIGHT);
-
             // check if we're currently clipping
-            if (Math.round(meter.volume * 1000) > 250) {
-                document.getElementById("decibelz").style.color = 'red';
-                document.getElementById("CetteSouffrance").src = "assets/intensite/voisine3.png"
-            } else if(Math.round(meter.volume * 1000) > 100) {
-                document.getElementById("decibelz").style.color = 'orange';
-                document.getElementById("CetteSouffrance").src = "assets/intensite/voisine2.png"
-            } else {
-                document.getElementById("decibelz").style.color = 'black';
-                document.getElementById("CetteSouffrance").src = "assets/intensite/voisine1.png"
-            }
-
-            //console.log(meter.volume);
-            document.getElementById("decibelz").innerHTML = String(Math.round(meter.volume * 1000)) + " db"
-            // draw a bar based on the current volume
-            canvasContext.fillRect(0, 0, meter.volume * WIDTH * 1.4, HEIGHT);
-
-            // set up the next visual callback
-            rafID = window.requestAnimationFrame(onLevelChange);
-        }
     </script>
 
 
