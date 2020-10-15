@@ -10,11 +10,11 @@
   <script>
     source = String(window.location.href).split('/').pop()
     localStorage.setItem("linkCode", source)
+    print("code actif ->" + source)
     if (source == "bruit") {
       window.location.href = 'bruit.html';
     } else {
       window.location.href = 'index.html';
-
     }
   </script>
 
