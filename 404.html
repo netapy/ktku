@@ -1,15 +1,23 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<title>Kataku Link</title>
+  <title>Kataku Link</title>
 </head>
+
 <body>
-  
-<script>
-  source = String(window.location.href).split('/').pop()
-  localStorage.setItem("linkCode", source)
-  window.location.href = 'index.html';
-</script>
+
+  <script>
+    source = String(window.location.href).split('/').pop()
+    localStorage.setItem("linkCode", source)
+    if (source == "bruit") {
+      window.location.href = 'bruit.html';
+    } else {
+      window.location.href = 'index.html';
+
+    }
+  </script>
 
 </body>
+
 </html>
