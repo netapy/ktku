@@ -234,7 +234,7 @@ class Carousel {
             }
         };
 
-        let texteCarteProv = deckImporte[compteurDeck].text.replace(/<j1>/g, jrs_locaux[0]).replace(/<j2>/g, jrs_locaux[1]).replace(/<j3>/g, jrs_locaux[2])
+        let texteCarteProv = deckImporte[compteurDeck].text.replace(/<j1>/g, jrs_locaux[0]).replace(/<j2>/g, jrs_locaux[1]).replace(/<j3>/g, jrs_locaux[2]).replace(/undefined/g, jrs_filtres[Math.floor(Math.random() * jrs_filtres.length)])
 
         card.innerHTML = '<div class="cardcont" data-ctype="'+ deckImporte[compteurDeck].type +'"><h5 style="margin-top:10%">' + deckImporte[compteurDeck].titre + '</h5> <img class="illustrCarte" src="' + assocImages[deckImporte[compteurDeck].id_image] + '"> <div class="consigne">' + texteCarteProv + '<div class="shyIndic">#!!#</div></div><div class="logoktk"><img class="logobot" src="assets/logo_kataku_transpar.png"/></div></div>'.replace(/undefined/g, jrs_filtres[Math.floor(Math.random() * jrs_filtres.length)])
 
