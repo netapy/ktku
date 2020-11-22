@@ -1,6 +1,5 @@
 let cacheName = 'ktkache';
 
-
 const staticAssets = [
     'index.html',
     'slider.html',

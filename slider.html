@@ -34,17 +34,17 @@
 </head>
 
 <body scroll="no" style="overflow: hidden">
-
+  
   <!-- Primary Page Layout
   ––––––––––––––––––––––––––––––––––––––––––––––––––-->
   <div class="mainContainer">
     <div class="menu">
       <h5 id='titreMenu' style="margin-top:6%; width: 100%; white-space: nowrap;">On se met comment ?</h5>
       <div style="width: 100%; max-height: 30vh;">
-        <img class="brainlet" src="assets/intensite/bouteille8.png" id='CetteSouffrance'>
+        <img class="brainlet" src="assets/intensite/bouteille4.png" id='CetteSouffrance'>
       </div>
-      <div style="width: 100%; font-size:1.5rem;" id='scoreChoisi'>- Curieux -</div>
-      <input type="range" min="0" max="23" step="1" value="7" id='scoreSale'>
+      <div style="width: 100%; font-size:1.5rem;" id='scoreChoisi'>- Festif -</div>
+      <input type="range" min="0" max="11" step="1" value="4" id='scoreSale'>
       <div class='row' style='width: 100%; z-index: 10;'>
         <button class="button-primary" style="padding: 0px 10px;" onclick="{
           document.body.style.opacity = 0;
@@ -95,36 +95,21 @@
   </script>
 
   <script>
-    var palliers = ['Hein?', 'Doux', 'Gentil', 'Amical', 'Okk', 'Pas mal', 'Ouvert', 'Curieux', 'Osé', 'Joueur',
-      'Entrepreuneur', 'Festif', 'Courageux', 'Ambitieux', 'Déconnecté', 'Stupide', 'Sans amour propre', 'Oubli',
-      'Décadence', 'Misère', 'SAMU', '911', '*purification*', 'Kataku.'
+    var palliers = ['Doux', 'Ouvert', 'Osé', 'Joueur',
+      'Festif', 'Ambitieux', 'Stupide', 'Sans amour propre', 'Oubli',
+      'Misère', '911', 'Kataku.'
     ]
     var slider = document.getElementById("scoreSale");
     var output = document.getElementById("scoreChoisi");
     slider.oninput = function () {
-      if (this.value / 2 % 1 == 0 && this.value != 23) {
-        output.innerHTML = "- " + String(palliers[this.value]) + " -<br><span class='rmxlogo'>(Mix)</span>";
-      } else {
-        output.innerHTML = "- " + String(palliers[this.value]) + " -";
-      }
+      output.innerHTML = "- " + String(palliers[this.value]) + " -";
       document.getElementById("CetteSouffrance").src = "assets/intensite/bouteille" + (parseInt(this.value) + 1) +
         ".png"
     }
 
     function GOjeu() {
       function buildDeck(intens, idgroupe) {
-        var intensi_loc = "";
-        if (intens / 2 == 0.5) {
-          intensi_loc = "(1,2,0)";
-        } else if (intens / 2 == 12) {
-          intensi_loc = "(11, 12,0)";
-        } else if (intens / 2 % 1 == 0) {
-          intensi_loc = "(" + String(intens / 2) + ",0)";
-        } else {
-          //le niveau "remix"
-          intensi_loc = "(" + String(intens / 2 - 0.5) + "," + String(intens / 2 + 0.5) + ",0)";
-        }
-
+        var intensi_loc = "(" + String(intens) + ",0)";
         let dbBrut = JSON.parse(localStorage.getItem("contenu"))
         let LSTvirus = alasql("SELECT * from ? WHERE groupe in " + idgroupe + " AND type = 3 AND intens in " +
           intensi_loc, [dbBrut]);

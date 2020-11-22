@@ -2,7 +2,6 @@
 <html lang="fr">
 
 <head>
-
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
@@ -91,7 +90,8 @@
         <span id="dummyvir"></span>
       </span>
       <br>
-      <input id="champCode" class="champJoueurAjout" placeholder="Code Kataku..." maxlength="12" style="min-width: 70%;">
+      <input id="champCode" class="champJoueurAjout" placeholder="Code Kataku..." maxlength="12"
+        style="min-width: 70%;">
       <button style="width: 20%; padding: 0px;" onclick="document.getElementById('modalVirus').style.display='none';
         document.getElementsByClassName('mainContainer')[0].style.opacity = 1;
         let champsCode = document.getElementById('champCode').value.toLowerCase();
@@ -165,7 +165,7 @@
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', function () {
-        navigator.serviceWorker.register('sw.js');
+        navigator.serviceWorker.register('service-worker.js');
       });
     }
   </script>

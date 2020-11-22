@@ -63,7 +63,7 @@
         onclick="document.getElementById('modalquitter').style.display = 'none'; document.getElementById('board').style.opacity = 1">-
         Non -</button>
     </span>
-    
+
     <span id="modalVirus" class="modalQuit">
       <span id="listeVirus">
         <span id="dummyvir"></span>
@@ -85,7 +85,8 @@
 
     <script>
       let intensFinal = localStorage.getItem('intens');
-      let couleur_fond = "hsl(211, 25%, " + String(Math.max(100 - (intensFinal * 100) / 18, 20)) + "%)";
+      let couleur_fond = "hsl(211, 25%, " + String(Math.max(60 - intensFinal * 2.2, 25)) + "%)";
+      if (intensFinal == "12") couleur_fond = "#523d3d";
       document.getElementById('board').style.backgroundColor = 'transparent';
       document.body.style.backgroundColor = couleur_fond;
       document.body.style.transition = "2s ease"
@@ -95,7 +96,6 @@
       var joueurs = localStorage.getItem('lesJoueurs').split(',')
       let dumber = 0;
       let joueurs_retenus = {};
-
       //La classe a ete importee du fichier ktk.js present dans le dossier JS a cote
       let board = document.querySelector('#board');
       let carousel = new Carousel(board);
