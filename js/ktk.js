@@ -186,7 +186,6 @@ class Carousel {
                                 document.body.style.backgroundColor = couleur_fond;
                             }, 1500)
                             let eleme = document.getElementById("listeVirus").children[document.getElementById("listeVirus").children.length - 1]
-                            console.log(eleme);
                             eleme.parentNode.removeChild(eleme);
                         } else if (this.nextCard.firstChild.firstChild.innerHTML == "Fosse") {
                             document.body.style.backgroundColor = '#835833FF';

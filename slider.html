@@ -162,6 +162,14 @@
           deckFinal.unshift(LSTzeroes.filter(cartee => cartee.id == 3)[0]);
           deckFinal.push(LSTzeroes.filter(cartee => cartee.id == 2)[0]);
         }
+        deckFinal.push({
+          id: 001,
+          titre: "Fin",
+          text: "Bravo, c'est la fin. <br> Pensez à boire de l'eau aussi.. <br><br><span style='opacity:.6;font-size:16px'>(swipe pour retourner au menu)</span>",
+          intens: 0,
+          type: 0,
+          id_image: 60
+        })
         for (let i = deckFinal.length - 1; i >= 0; i--) {
           if (deckFinal[i].type == 5) {
             deckFinal.splice(i, 0, LSTequiv.filter(cartee => cartee.id == deckFinal[i].id_phrase)[0])
