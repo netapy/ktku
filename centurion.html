@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1">
+    <meta name="description" content="Centurion">
+    <meta name="author" content="Baudouin Arbarétier">
+    <title>Centurion</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+        integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <meta name="theme-color" content="#FDFDFD" />
+    <link rel="icon" type="image/png" href="assets/icon.png">
+    <link rel="apple-touch-icon" href="assets/icon192.png">
+    <link rel="apple-touch-icon" href="touch-icon-iphone.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">  
+    <style>
+        @font-face {
+            font-family: "GapSansBold";
+            src: url(./fonts/GapSansBold.ttf) format("truetype");
+        }
+    </style>
+</head>
+
+<body style="background-color: #202020;">
+    <div id="particles-js"></div>
+    <div class="container-fluid d-flex align-items-center justify-content-center"
+        style="height: 100vh; position: absolute; z-index: 999; padding-bottom: 100px;">
+        <div style="color: white;">
+            <div id="centurionLogo" style="max-width: 165px; margin: auto; margin-bottom: 50px;">
+                <h1 style="margin:0;">Centurion</h1>
+                <div class="text-right">by Kataku</div>
+
+            </div>
+            <div class="p-4"
+                style="background-color: whitesmoke; width: 90vw; max-width: 300px; border-radius: 10px; padding: 20px 10px; color: black;"
+                id="instructions">
+                <h5>Les règles sont simples :</h5>
+                <ul>
+                    <li>1 seau de bière</li>
+                    <li>1 verre à shot par joueur</li>
+                    <li>1 shot de bière chaque minute</li>
+                    <li>Pendant 100 minutes</li>
+                </ul>
+                <div class="w-100 text-center">
+                    <button class="btn button-primary"
+                        style="background-color: cornflowerblue; padding: 5px 15px; font-size: 20px; margin-top: 15px;"
+                        onclick="demarrageJeu()">Démarrer</button>
+                </div>
+            </div>
+            <span id="interfaceJeu" style="display: none;">
+                <div class="d-flex align-items-center justify-content-center flex-column"
+                    style="height: 60vh; color: white;">
+                    <h1 id="progression" style="font-size: 80px;">- - -</h1>
+                    <h5 id="time" style="font-size: 20px; opacity: .5;">100:00</h5>
+                </div>
+            </span>
+        </div>
+    </div>
+
+    <script>
+        const demarrageJeu = () => {
+            play();
+            document.querySelector("#centurionLogo").style.transform = "scale(0.7)";
+            document.querySelector("#centurionLogo").style.opacity = ".9";
+            document.querySelector("#instructions").style.display = "none";
+            document.querySelector("#interfaceJeu").style.display = "";
+            var fiveMinutes = 60 * 100,
+                display = document.querySelector('#time');
+            startTimer(fiveMinutes, display);
+            setTimeout(() => {
+                src.src = "assets/centurion_smpl.mp3";
+                soundFile.appendChild(src);
+                soundFile.load();
+            }, 4000)
+        }
+        //demarrageJeu()
+
+
+        function startTimer(duration, display) {
+            var shotMoment = 60;
+            var timer = duration,
+                minutes, seconds;
+            var interval = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                shotMoment--
+                if (shotMoment == -1) {
+                    play();
+                    shotMoment = 59;
+                    document.querySelector("#progression").innerHTML = "BUVEZ !";
+                    document.body.style.backgroundColor = "#612a2a"
+                    setTimeout(() => {
+                        document.querySelector("#progression").innerHTML = "- - -";
+                        document.body.style.backgroundColor = "#202020"
+                    }, 5100)
+                }
+
+                if (--timer < 0) {
+                    document.querySelector("#progression").innerHTML = "Fin.";
+                    clearInterval(interval);
+                }
+            }, 1000);
+        }
+
+
+        var soundFile = document.createElement("audio");
+        soundFile.preload = "auto";
+
+        var src = document.createElement("source");
+        src.src = "assets/hit.mp3";
+        soundFile.appendChild(src);
+        soundFile.load();
+
+        function play() {
+            soundFile.currentTime = 0.01;
+            soundFile.volume = 1;
+            setTimeout(function () {
+                soundFile.play();
+            }, 1);
+        }
+    </script>
+
+
+    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</body>
+
+<script>
+    particlesJS("particles-js", {
+        "particles": {
+            "number": {
+                "value": 58,
+                "density": {
+                    "enable": true,
+                    "value_area": 800
+                }
+            },
+            "color": {
+                "value": "#bbbbbb"
+            },
+            "shape": {
+                "type": "circle",
+                "stroke": {
+                    "width": 0,
+                    "color": "#000000"
+                },
+            },
+            "opacity": {
+                "value": 0.5,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 1,
+                    "opacity_min": 0.1,
+                    "sync": false
+                }
+            },
+            "size": {
+                "value": 3.5,
+                "random": true,
+                "anim": {
+                    "enable": false,
+                    "speed": 20,
+                    "size_min": 0.1,
+                    "sync": false
+                }
+            },
+            "line_linked": {
+                "enable": false,
+                "distance": 500,
+                "color": "#ffffff",
+                "opacity": 0.4,
+                "width": 2
+            },
+            "move": {
+                "enable": true,
+                "speed": 5.5,
+                "direction": "bottom-left",
+                "random": false,
+                "straight": false,
+                "out_mode": "out",
+                "bounce": false,
+                "attract": {
+                    "enable": false,
+                    "rotateX": 600,
+                    "rotateY": 1200
+                }
+            }
+        },
+        "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+                "onhover": {
+                    "enable": false,
+                    "mode": "bubble"
+                },
+                "onclick": {
+                    "enable": false,
+                    "mode": "repulse"
+                },
+                "resize": true
+            },
+            "modes": {
+                "grab": {
+                    "distance": 400,
+                    "line_linked": {
+                        "opacity": 0.5
+                    }
+                },
+                "bubble": {
+                    "distance": 400,
+                    "size": 4,
+                    "duration": 0.3,
+                    "opacity": 1,
+                    "speed": 3
+                },
+                "repulse": {
+                    "distance": 200,
+                    "duration": 0.4
+                },
+                "push": {
+                    "particles_nb": 4
+                },
+                "remove": {
+                    "particles_nb": 2
+                }
+            }
+        },
+        "retina_detect": true
+    });
+</script>
+
+<style>
+    /* ---- reset ---- */
+    body {
+        margin: 0;
+        font-family: 'GapSansBold', sans-serif;
+        background-color: #202020;
+        transition: all 2s ease-in;
+    }
+
+    canvas {
+        display: block;
+        vertical-align: bottom;
+    }
+
+    /* ---- particles.js container ---- */
+    #particles-js {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-image: url("");
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+    }
+
+    /* ---- stats.js ---- */
+    .count-particles {
+        background: #000022;
+        position: absolute;
+        top: 48px;
+        left: 0;
+        width: 80px;
+        color: #13E8E9;
+        font-size: .8em;
+        text-align: left;
+        text-indent: 4px;
+        line-height: 14px;
+        padding-bottom: 2px;
+        font-family: Helvetica, Arial, sans-serif;
+        font-weight: bold;
+    }
+
+    .js-count-particles {
+        font-size: 1.1em;
+    }
+
+    #stats,
+    .count-particles {
+        -webkit-user-select: none;
+        margin-top: 5px;
+        margin-left: 5px;
+    }
+
+    #stats {
+        border-radius: 3px 3px 0 0;
+        overflow: hidden;
+    }
+
+    .count-particles {
+        border-radius: 0 0 3px 3px;
+    }
+</style>
+
+
+
+</html>
+
+</html>
