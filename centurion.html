@@ -14,7 +14,7 @@
     <link rel="apple-touch-icon" href="touch-icon-iphone.png">
     <link rel="apple-touch-icon" sizes="152x152" href="touch-icon-ipad.png">
     <link rel="apple-touch-icon" sizes="180x180" href="touch-icon-iphone-retina.png">
-    <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">  
+    <link rel="apple-touch-icon" sizes="167x167" href="touch-icon-ipad-retina.png">
     <style>
         @font-face {
             font-family: "GapSansBold";
@@ -61,7 +61,7 @@
 
     <script>
         const demarrageJeu = () => {
-            play();
+            mainHitAudio.play()
             document.querySelector("#centurionLogo").style.transform = "scale(0.7)";
             document.querySelector("#centurionLogo").style.opacity = ".9";
             document.querySelector("#instructions").style.display = "none";
@@ -93,7 +93,7 @@
 
                 shotMoment--
                 if (shotMoment == -1) {
-                    play();
+                    mainHitAudio.play();
                     shotMoment = 59;
                     document.querySelector("#progression").innerHTML = "BUVEZ !";
                     document.body.style.backgroundColor = "#612a2a"
@@ -110,26 +110,13 @@
             }, 1000);
         }
 
+        var interAudio = new Audio("https://kataku.app/assets/centurion_smpl.mp3")
+        var mainHitAudio = new Audio("https://kataku.app/assets/hit.mp3")
 
-        var soundFile = document.createElement("audio");
-        soundFile.preload = "auto";
-
-        var src = document.createElement("source");
-        src.src = "assets/hit.mp3";
-        soundFile.appendChild(src);
-        soundFile.load();
-
-        function play() {
-            soundFile.currentTime = 0.01;
-            soundFile.volume = 1;
-            setTimeout(function () {
-                soundFile.play();
-            }, 1);
-        }
     </script>
 
 
-    <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 </body>
 
 <script>
