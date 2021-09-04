@@ -1,29 +1,3 @@
-/*
-* Skeleton V2.0.4
-* Copyright 2014, Dave Gamache
-* www.getskeleton.com
-* Free to use under the MIT license.
-* http://www.opensource.org/licenses/mit-license.php
-* 12/29/2014
-*/
-
-/* Table of contents
-––––––––––––––––––––––––––––––––––––––––––––––––––
-- Grid
-- Base Styles
-- Typography
-- Links
-- Buttons
-- Forms
-- Lists
-- Code
-- Tables
-- Spacing
-- Utilities
-- Clearing
-- Media Queries
-*/
-
 @font-face {
   font-family: "GapSansBold";
   src: url(../fonts/GapSansBold.ttf) format("truetype");
@@ -668,7 +642,6 @@ there.
   width: 100%;
   font-size: 100%;
   bottom: -30px;
-  z-index: 3;
 }
 
 .logobot {
@@ -969,7 +942,7 @@ input[type="range"]::-webkit-slider-thumb:active {
   line-height: 0;
 }
 
-.rmxlogo{
+.rmxlogo {
   opacity: .5;
   font-size: 12px;
   position: absolute;
@@ -984,4 +957,12 @@ input[type="range"]::-webkit-slider-thumb:active {
 ::selection {
   background-color: #444;
   color: white;
+}
+
+.gameTitle {
+  background-color: #e9e9e9;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0px;
+  font-family: GapSansBold;
 }

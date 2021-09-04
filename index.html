@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>- Kataku -</title>
+  <title>Kataku</title>
   <meta name="description" content="Kataku">
   <meta name="author" content="LFB">
   <link rel="manifest" href="./manifest.json">
@@ -21,12 +21,14 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/normalize.css">
   <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/modal.css">
 
   <!-- JS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.6.1/alasql.min.js"></script>
   <script src="js/ktk.js"></script>
   <script src="js/img.js"></script>
+  <script src="js/init.js"></script>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146443684-2"></script>
@@ -84,27 +86,6 @@
         onclick="this.parentNode.parentNode.style.display='none'; localStorage.setItem('disclaimer',String(dateActuelle.getDate()))">J'accepte.</button>
     </div>
   </div>
-  <div class="user-interface">
-    <span id="modalVirus" class="modalQuit" style="bottom: 30vh;">
-      <span id="listeVirus">
-        <span id="dummyvir"></span>
-      </span>
-      <br>
-      <input id="champCode" class="champJoueurAjout" placeholder="Code Kataku..." maxlength="12"
-        style="min-width: 70%;">
-      <button style="width: 20%; padding: 0px;" onclick="document.getElementById('modalVirus').style.display='none';
-        document.getElementsByClassName('mainContainer')[0].style.opacity = 1;
-        let champsCode = document.getElementById('champCode').value.toLowerCase();
-        if(assocCode['LSTCDESAMAJ'].includes(champsCode)){
-          console.log('okk code rentré');
-          localStorage.setItem('linkCode',champsCode);
-          codeActif = champsCode;
-          verifCode();
-        };
-        ">
-        - ok - </button>
-    </span>
-  </div>
 
   <script>
     if (localStorage.getItem('disclaimer') == dateActuelle.getDate()) {
@@ -132,8 +113,6 @@
         d'accueil</strong>".</span>
   </div>
 
-  <!-- Primary Page Layout
-  ––––––––––––––––––––––––––––––––––––––––––––––––––-->
   <div class="mainContainer">
     <div class="menu">
       <h5 id='titreMenu' style="margin-top:6%; width: 100%; white-space: nowrap;">On joue ?</h5>
@@ -146,14 +125,14 @@
         </span>
       </div>
       <div style="width: 100%; position: relative; margin-bottom: 20px;">
-        <span class="btnPlus" style="background-color: #F1F1F1; color: #363636;"
-          onclick="document.getElementById('modalVirus').style.display='flex'; document.getElementsByClassName('mainContainer')[0].style.opacity = 0.4;">☰</span>
+        <span class="btnPlus" data-custom-open="modal-1" style="background-color: #F1F1F1; color: #363636;"
+          onclick="">☰</span>
         <input id="champJoueur" class="champJoueurAjout" placeholder="Joueur..." maxlength="8">
         <span class="btnPlus" style="background-color: #363636; padding-left: 10px;padding-right: 10px;"
           onclick="ajoutUnJoueur(document.getElementById('champJoueur'))">+</span>
       </div>
       <div style='width: 100%; z-index: 10; height: auto;'>
-        <button id="suivantPage1" class="button-primary" onclick="GOslider()" style="opacity: 0.6;" disabled>
+        <button id="suivantPage1" onclick="GOslider()" style="opacity: 0.6;" disabled>
           - Ajoute 3 joueurs -</button>
       </div>
       <div class="logoktk">
@@ -161,6 +140,22 @@
       </div>
     </div>
   </div>
+
+  <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+    <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+      <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+        <header class="modal__header"><span class="modal__close" aria-label="Close modal"
+            data-custom-close="modal-1"></span>
+          <h5 id="modal-1-title"> Choisis ton jeu : </h5>
+        </header>
+        <main class="modal__content" id="modal-1-content">
+          <div class="gameTitle" data-custom-close="modal-1">🍻 Kataku Classic</div>
+          <div class="gameTitle" style="opacity: .8;">👀 Comming soon</div>
+        </main>
+      </div>
+    </div>
+  </div>
+
 
   <script>
     if ('serviceWorker' in navigator) {
@@ -244,51 +239,26 @@
   </script>
 
   <script>
-    var codeActif;
+    document.getElementById("titreMenu").innerHTML = [
+      "On joue ?",
+      "On se la colle ?",
+      "On vient se la mettre ?",
+      "On vient se déboiter ?",
+      "On prend sa cuite ?",
+      "On prend une biture ?",
+      "On a soif ?",
+      "On s'arrache la face ?",
+      "On vient se démolir ?",
+      "On s'éclate la tronche ?",
+      "On se met une murge ?",
+      "On se pète la ruche ?",
+      "On se torpille le caisson ?",
+      "On se remplit le cornet ?",
+      "On se retourne la tête ?",
+      "On se prend une timbale ?"
+    ][Math.floor(Math.random() * 15)];
 
-    function verifCode() {
-      let blockCode = document.getElementsByClassName('blockNoCode')[1]
-      if (!assocCode['LSTCDESAMAJ'].includes(localStorage.getItem("linkCode"))) {
-        localStorage.setItem("linkCode", "democode");
-        codeActif = "democode"
-      } else {
-        codeActif = assocCode[localStorage.getItem("linkCode").toLocaleLowerCase()]
-      }
-      document.getElementById("titreMenu").innerHTML = codeActif['titreMenu'][Math.floor(Math.random() * codeActif[
-        'titreMenu'].length)];
-      document.getElementsByClassName('brainlet')[0].src = codeActif['imgAcc']
-
-    }
-    verifCode();
-  </script>
-
-  <script>
-    function listeJoueurss2(message, action) {
-      let tablee = ['i', 'j', 'k', 'l', 'm', "1", 'n', 'o', ")", ".", ",", 'p', 'q', 'r', "<", 's', 't', 'u', 'v', 'w',
-        'd', 'e', 'x', 'y', "Q", "R", "S", "T", "U", 'z', "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L",
-        "M", "N", "O", "P", "V", 'a', 'b', 'c', 'f', 'g', 'h', "W", "X", "Y", "Z", ";"
-      ]
-      let text = message;
-      let encrypted = "";
-      for (var i = 0; i < text.length; i++) {
-        let positionUn = tablee.indexOf(text[i]);
-        let n = null;
-        if (positionUn != "-1") {
-          n = action == 'encrypt' ? positionUn + 4 : positionUn - 4;
-          if (n >= 58) {
-            n = n - 58;
-          } else if (n < 0) {
-            n = n + 58;
-          }
-          s = tablee[n];
-        } else {
-          s = text[i]
-        }
-        encrypted += s;
-      }
-      //ne pas oublier de escape les " quand on veut le passer en JSON
-      return encrypted;
-    }
+    document.getElementsByClassName('brainlet')[0].src = 'assets/selecjoueurs.png'
 
     fetch('https://kataku.app/dbjsn.txt')
       .then(function (response) {
@@ -337,8 +307,16 @@
       }
     }
   </script>
-  <!-- End Document
-  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="https://cdn.jsdelivr.net/npm/micromodal@0.4.6/dist/micromodal.min.js"></script>
+  <script>
+    MicroModal.init({
+      openTrigger: 'data-custom-open', // [3]
+      closeTrigger: 'data-custom-close', // [4]
+      openClass: 'is-open', // [5]
+      disableScroll: true, // [6]
+      disableFocus: false, // [7]
+    });
+  </script>
 </body>
 
 </html>
